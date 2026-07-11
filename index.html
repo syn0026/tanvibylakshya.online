@@ -522,141 +522,7 @@ footer ul a:hover{ color:var(--gold-light); }
 }
 </style>
 </head>
-<script>
-  // 1. Setup the connection details
-  const PROJECT_ID = 'YOUR_PROJECT_ID'; // <-- REPLACE THIS WITH YOUR 8-LETTER SANITY ID
-  const DATASET = 'production';
-  
-  // 2. Ask Sanity for all products and their image URLs
-  const QUERY = encodeURIComponent('*[_type == "product"]{title, category, price, originalPrice, isNew, "imageUrl": image.asset->url}');
-  const URL = `https://${djnynazm}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
-  // 3. Fetch the data and update the website
-  fetch(URL)
-    .then(res => res.json())
-    .then(({ result }) => {
-      const railContainer = document.querySelector('.rail');
-      
-      // Only clear the static items if we actually got products back from Sanity
-      if(result && result.length > 0) {
-          railContainer.innerHTML = ''; 
-      }
-      
-      result.forEach(product => {
-        const cardHTML = `
-          <article class="p-card">
-            <div class="p-media">
-              ${product.isNew ? `<span class="p-badge">NEW</span>` : ''}
-              <button class="p-wish" aria-label="Add to wishlist">♡</button>
-              <img src="${product.imageUrl}" alt="${product.title}" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:-1;" />
-              <div class="p-quick">Quick View</div>
-            </div>
-            <div class="p-info">
-              <span class="cat-name">${product.category || 'TANVI EXCLUSIVE'}</span>
-              <h4>${product.title}</h4>
-              <div class="p-price">
-                <span class="now">₹${product.price}</span>
-                ${product.originalPrice ? `<span class="was">₹${product.originalPrice}</span>` : ''}
-              </div>
-              <button class="p-cta">Add to Cart</button>
-            </div>
-          </article>
-        `;
-        railContainer.insertAdjacentHTML('beforeend', cardHTML);
-      });
-    })
-    .catch(err => console.error("Error fetching products from Sanity:", err));
-</script>
-<script>
-  // 1. Setup the connection details
-  const PROJECT_ID = 'YOUR_PROJECT_ID'; // <-- REPLACE THIS WITH YOUR 8-LETTER SANITY ID
-  const DATASET = 'production';
-  
-  // 2. Ask Sanity for all products and their image URLs
-  const QUERY = encodeURIComponent('*[_type == "product"]{title, category, price, originalPrice, isNew, "imageUrl": image.asset->url}');
-  const URL = `https://${djnynazm}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
-
-  // 3. Fetch the data and update the website
-  fetch(URL)
-    .then(res => res.json())
-    .then(({ result }) => {
-      const railContainer = document.querySelector('.rail');
-      
-      // Only clear the static items if we actually got products back from Sanity
-      if(result && result.length > 0) {
-          railContainer.innerHTML = ''; 
-      }
-      
-      result.forEach(product => {
-        const cardHTML = `
-          <article class="p-card">
-            <div class="p-media">
-              ${product.isNew ? `<span class="p-badge">NEW</span>` : ''}
-              <button class="p-wish" aria-label="Add to wishlist">♡</button>
-              <img src="${product.imageUrl}" alt="${product.title}" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:-1;" />
-              <div class="p-quick">Quick View</div>
-            </div>
-            <div class="p-info">
-              <span class="cat-name">${product.category || 'TANVI EXCLUSIVE'}</span>
-              <h4>${product.title}</h4>
-              <div class="p-price">
-                <span class="now">₹${product.price}</span>
-                ${product.originalPrice ? `<span class="was">₹${product.originalPrice}</span>` : ''}
-              </div>
-              <button class="p-cta">Add to Cart</button>
-            </div>
-          </article>
-        `;
-        railContainer.insertAdjacentHTML('beforeend', cardHTML);
-      });
-    })
-    .catch(err => console.error("Error fetching products from Sanity:", err));
-</script>
-<script>
-  // 1. Setup the connection details
-  const PROJECT_ID = 'djnynazm'; // <-- REPLACE THIS WITH YOUR 8-LETTER SANITY ID
-  const DATASET = 'production';
-  
-  // 2. Ask Sanity for all products and their image URLs
-  const QUERY = encodeURIComponent('*[_type == "product"]{title, category, price, originalPrice, isNew, "imageUrl": image.asset->url}');
-  const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
-
-  // 3. Fetch the data and update the website
-  fetch(URL)
-    .then(res => res.json())
-    .then(({ result }) => {
-      const railContainer = document.querySelector('.rail');
-      
-      // Only clear the static items if we actually got products back from Sanity
-      if(result && result.length > 0) {
-          railContainer.innerHTML = ''; 
-      }
-      
-      result.forEach(product => {
-        const cardHTML = `
-          <article class="p-card">
-            <div class="p-media">
-              ${product.isNew ? `<span class="p-badge">NEW</span>` : ''}
-              <button class="p-wish" aria-label="Add to wishlist">♡</button>
-              <img src="${product.imageUrl}" alt="${product.title}" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:-1;" />
-              <div class="p-quick">Quick View</div>
-            </div>
-            <div class="p-info">
-              <span class="cat-name">${product.category || 'TANVI EXCLUSIVE'}</span>
-              <h4>${product.title}</h4>
-              <div class="p-price">
-                <span class="now">₹${product.price}</span>
-                ${product.originalPrice ? `<span class="was">₹${product.originalPrice}</span>` : ''}
-              </div>
-              <button class="p-cta">Add to Cart</button>
-            </div>
-          </article>
-        `;
-        railContainer.insertAdjacentHTML('beforeend', cardHTML);
-      });
-    })
-    .catch(err => console.error("Error fetching products from Sanity:", err));
-</script>
 <body>
 
  
@@ -832,80 +698,7 @@ footer ul a:hover{ color:var(--gold-light); }
     </div>
 
     <div class="rail reveal">
-      <article class="p-card">
-        <div class="p-media">
-          <span class="p-badge">NEW</span>
-          <button class="p-wish" aria-label="Add to wishlist">♡</button>
-          <svg viewBox="0 0 160 200"><path d="M80 10 L45 36 L45 190 L115 190 L115 36 Z" fill="none" stroke="#9C7A2F" stroke-width="2"/><path d="M45 36 L115 36" stroke="#C8A24D" stroke-width="5"/></svg>
-          <div class="p-quick">Quick View</div>
-        </div>
-        <div class="p-info">
-          <span class="cat-name">SET MUNDU</span>
-          <h4>Kasavu Ivory Set Mundu</h4>
-          <div class="p-price"><span class="now">₹6,850</span><span class="was">₹8,200</span></div>
-          <button class="p-cta">Add to Cart</button>
-        </div>
-      </article>
-
-      <article class="p-card">
-        <div class="p-media">
-          <span class="p-badge">NEW</span>
-          <button class="p-wish" aria-label="Add to wishlist">♡</button>
-          <svg viewBox="0 0 160 200"><path d="M55 10 Q30 100 55 190" fill="none" stroke="#9C7A2F" stroke-width="2"/><path d="M105 10 Q130 100 105 190" fill="none" stroke="#9C7A2F" stroke-width="2"/><path d="M55 26 Q80 40 105 26" fill="none" stroke="#C8A24D" stroke-width="3"/></svg>
-          <div class="p-quick">Quick View</div>
-        </div>
-        <div class="p-info">
-          <span class="cat-name">MALKOTTA SAREE</span>
-          <h4>Emerald Zari Malkotta</h4>
-          <div class="p-price"><span class="now">₹11,400</span></div>
-          <button class="p-cta">Add to Cart</button>
-        </div>
-      </article>
-
-      <article class="p-card">
-        <div class="p-media">
-          <span class="p-badge">LIMITED</span>
-          <button class="p-wish" aria-label="Add to wishlist">♡</button>
-          <svg viewBox="0 0 160 200"><circle cx="80" cy="46" r="22" fill="none" stroke="#9C7A2F" stroke-width="2"/><path d="M80 68 L80 190" stroke="#9C7A2F" stroke-width="2"/><path d="M50 110 Q80 140 110 110" fill="none" stroke="#C8A24D" stroke-width="3"/></svg>
-          <div class="p-quick">Quick View</div>
-        </div>
-        <div class="p-info">
-          <span class="cat-name">DANCE COSTUME</span>
-          <h4>Mohiniyattam Performance Set</h4>
-          <div class="p-price"><span class="now">₹18,900</span></div>
-          <button class="p-cta">Add to Cart</button>
-        </div>
-      </article>
-
-      <article class="p-card">
-        <div class="p-media">
-          <span class="p-badge">NEW</span>
-          <button class="p-wish" aria-label="Add to wishlist">♡</button>
-          <svg viewBox="0 0 160 200"><circle cx="80" cy="70" r="28" fill="none" stroke="#9C7A2F" stroke-width="2.6"/><path d="M60 96 Q56 150 80 190 Q104 150 100 96" fill="none" stroke="#C8A24D" stroke-width="2.4"/></svg>
-          <div class="p-quick">Quick View</div>
-        </div>
-        <div class="p-info">
-          <span class="cat-name">TEMPLE JEWELLERY</span>
-          <h4>Lakshmi Kasu Necklace</h4>
-          <div class="p-price"><span class="now">₹9,600</span><span class="was">₹12,000</span></div>
-          <button class="p-cta">Add to Cart</button>
-        </div>
-      </article>
-
-      <article class="p-card">
-        <div class="p-media">
-          <span class="p-badge">NEW</span>
-          <button class="p-wish" aria-label="Add to wishlist">♡</button>
-          <svg viewBox="0 0 160 200"><ellipse cx="80" cy="90" rx="42" ry="56" fill="none" stroke="#9C7A2F" stroke-width="2.6"/><rect x="73" y="140" width="14" height="42" fill="none" stroke="#C8A24D" stroke-width="2"/></svg>
-          <div class="p-quick">Quick View</div>
-        </div>
-        <div class="p-info">
-          <span class="cat-name">ARANMULA KANNADI</span>
-          <h4>Classic Handle Mirror — Small</h4>
-          <div class="p-price"><span class="now">₹4,200</span></div>
-          <button class="p-cta">Add to Cart</button>
-        </div>
-      </article>
+      
     </div>
   </div>
 </section>
@@ -1255,6 +1048,41 @@ document.getElementById('nform').addEventListener('submit', (e) => {
     wrap.appendChild(p);
   }
 })();
+</script>
+<script>
+    const PROJECT_ID = 'djnynazm'; 
+    const DATASET = 'production';
+    const QUERY = encodeURIComponent('*[_type == "product"]{title, category, price, originalPrice, isNew, "imageUrl": image.asset->url}');
+    const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+    fetch(URL)
+      .then(res => res.json())
+      .then(({ result }) => {
+        const railContainer = document.querySelector('.rail');
+        if(result && result.length > 0) {
+            railContainer.innerHTML = ''; 
+            result.forEach(product => {
+              const cardHTML = `
+                <article class="p-card">
+                  <div class="p-media">
+                    ${product.isNew ? `<span class="p-badge">NEW</span>` : ''}
+                    <img src="${product.imageUrl}" alt="${product.title}" />
+                  </div>
+                  <div class="p-info">
+                    <span class="cat-name">${product.category || 'TANVI EXCLUSIVE'}</span>
+                    <h4>${product.title}</h4>
+                    <div class="p-price">
+                      <span class="now">₹${product.price}</span>
+                      ${product.originalPrice ? `<span class="was">₹${product.originalPrice}</span>` : ''}
+                    </div>
+                    <button class="p-cta">Add to Cart</button>
+                  </div>
+                </article>`;
+              railContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+      })
+      .catch(err => console.error("Error fetching products from Sanity:", err));
 </script>
 </body>
 </html>
