@@ -612,6 +612,51 @@ footer ul a:hover{ color:var(--gold-light); }
     })
     .catch(err => console.error("Error fetching products from Sanity:", err));
 </script>
+<script>
+  // 1. Setup the connection details
+  const PROJECT_ID = 'djnynazm'; // <-- REPLACE THIS WITH YOUR 8-LETTER SANITY ID
+  const DATASET = 'production';
+  
+  // 2. Ask Sanity for all products and their image URLs
+  const QUERY = encodeURIComponent('*[_type == "product"]{title, category, price, originalPrice, isNew, "imageUrl": image.asset->url}');
+  const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+  // 3. Fetch the data and update the website
+  fetch(URL)
+    .then(res => res.json())
+    .then(({ result }) => {
+      const railContainer = document.querySelector('.rail');
+      
+      // Only clear the static items if we actually got products back from Sanity
+      if(result && result.length > 0) {
+          railContainer.innerHTML = ''; 
+      }
+      
+      result.forEach(product => {
+        const cardHTML = `
+          <article class="p-card">
+            <div class="p-media">
+              ${product.isNew ? `<span class="p-badge">NEW</span>` : ''}
+              <button class="p-wish" aria-label="Add to wishlist">♡</button>
+              <img src="${product.imageUrl}" alt="${product.title}" style="width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; z-index:-1;" />
+              <div class="p-quick">Quick View</div>
+            </div>
+            <div class="p-info">
+              <span class="cat-name">${product.category || 'TANVI EXCLUSIVE'}</span>
+              <h4>${product.title}</h4>
+              <div class="p-price">
+                <span class="now">₹${product.price}</span>
+                ${product.originalPrice ? `<span class="was">₹${product.originalPrice}</span>` : ''}
+              </div>
+              <button class="p-cta">Add to Cart</button>
+            </div>
+          </article>
+        `;
+        railContainer.insertAdjacentHTML('beforeend', cardHTML);
+      });
+    })
+    .catch(err => console.error("Error fetching products from Sanity:", err));
+</script>
 <body>
 
  
