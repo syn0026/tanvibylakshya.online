@@ -612,83 +612,293 @@ footer ul a:hover{ color:var(--gold-light); }
 </svg>
 
 <!-- ============ FEATURED CATEGORIES ============ -->
-<section class="section" id="categories">
+<style>
+  /* Import High-End Vintage Typography */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&display=swap');
+
+  /* --- Deep Heritage Theme --- */
+  .vintage-section { 
+    background-color: #12100E; /* Deep Charcoal/Umber */
+    background-image: radial-gradient(circle at 50% 0%, #1f1b16 0%, #12100E 70%);
+    padding: 6rem 2rem; 
+    color: #E4D5B7; 
+    overflow: hidden; 
+  }
+  
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  /* --- Creative Header Typography --- */
+  .vintage-header { text-align: center; margin-bottom: 7rem; position: relative; }
+  .vintage-header .eyebrow { 
+    font-family: 'Pinyon Script', cursive; 
+    font-size: 3rem; 
+    color: #C8A24D; 
+    margin-bottom: -20px; 
+    display: block; 
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
+  .vintage-header h2 { 
+    font-family: 'Cinzel', serif; 
+    font-size: 3.8rem; 
+    font-weight: 400; 
+    letter-spacing: 8px; 
+    text-transform: uppercase; 
+    margin: 0; 
+    color: #F5EFEB; 
+    position: relative;
+    z-index: 1;
+  }
+
+  /* --- Staggered Grid Layout (Non-Template Look) --- */
+  .vintage-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+    gap: 3.5rem 2.5rem; 
+    padding-bottom: 40px;
+  }
+
+  .vintage-card { 
+    display: flex; 
+    flex-direction: column; 
+    text-decoration: none; 
+    position: relative; 
+    transition: all 0.5s ease; 
+  }
+  
+  /* Stagger every even card down to create a masonry-like art gallery feel */
+  .vintage-card:nth-child(even) { margin-top: 60px; }
+
+  /* --- Architectural Arch Frames --- */
+  .img-frame { 
+    position: relative; 
+    height: 420px; 
+    border-radius: 150px 150px 0 0; /* Arched top */
+    border: 1px solid rgba(200, 162, 77, 0.25);
+    padding: 10px; /* Creates a vintage double-border frame effect */
+    background: #1A1714;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  .img-inner {
+    width: 100%; 
+    height: 100%;
+    border-radius: 140px 140px 0 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Cinematic Grading via CSS */
+  .img-inner img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    filter: sepia(0.35) contrast(1.15) brightness(0.7); /* Vintage muted look */
+    transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* --- Creative Elements: Vertical Indexing --- */
+  .vintage-index {
+    position: absolute;
+    top: 50px;
+    left: -28px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: #C8A24D;
+    transform: rotate(-90deg);
+    letter-spacing: 3px;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+  }
+
+  /* --- Elegant Asymmetrical Typography --- */
+  .vintage-content {
+    padding-top: 1.8rem;
+    padding-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vintage-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: #F5EFEB;
+    margin: 0 0 12px 0;
+    transition: color 0.4s ease, transform 0.4s ease;
+  }
+
+  .vintage-content span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: #9A8356;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(154, 131, 86, 0.3);
+    padding-bottom: 6px;
+    transition: all 0.4s ease;
+  }
+
+  /* --- Rich Hover Interactions --- */
+  .vintage-card:hover .img-frame { 
+    transform: translateY(-12px); 
+    border-color: rgba(200, 162, 77, 0.7); 
+    background: #231F1B;
+  }
+  .vintage-card:hover .img-inner img { 
+    filter: sepia(0) contrast(1.05) brightness(0.95); /* Restores true color */
+    transform: scale(1.08); 
+  }
+  .vintage-card:hover .vintage-content h3 { 
+    color: #C8A24D; 
+    transform: translateX(8px); /* Subtle slide right */
+  }
+  .vintage-card:hover .vintage-content span { 
+    color: #E4D5B7; 
+    border-color: #C8A24D; 
+    padding-right: 15px; /* Line extends playfully */
+  }
+  .vintage-card:hover .vintage-index { opacity: 1; }
+
+  /* Responsive fixes */
+  @media (max-width: 768px) {
+    .vintage-card:nth-child(even) { margin-top: 0; }
+    .vintage-header h2 { font-size: 2.5rem; }
+    .vintage-header .eyebrow { font-size: 2rem; }
+  }
+</style>
+
+<section class="vintage-section" id="categories">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">വിഭാഗങ്ങൾ · Curated for you</span>
-      <h2>Featured Categories</h2>
-      <p>Every piece drawn from Kerala's living traditions — handpicked for the modern heirloom collector.</p>
+    
+    <!-- Cinematic Header -->
+    <div class="vintage-header">
+      <span class="eyebrow">Curated for you</span>
+      <h2>Living Traditions</h2>
     </div>
 
-    <div class="cat-grid">
-      <!-- Set Mundu -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><path d="M100 10 L60 40 L60 220 L140 220 L140 40 Z" fill="none" stroke="#0B6B53" stroke-width="2.5"/><path d="M60 40 L140 40" stroke="#C8A24D" stroke-width="6"/><path d="M60 200 L140 200" stroke="#C8A24D" stroke-width="6"/><path d="M100 10 L100 220" stroke="#C8A24D" stroke-width="1" stroke-dasharray="2 6"/></svg>
+    <!-- Staggered Art Gallery Grid -->
+    <div class="vintage-grid">
+      
+      <!-- 01 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 01</span>
+          <div class="img-inner">
+            <img src="assets/setummund.png" alt="Kerala Set Mundu">
+          </div>
         </div>
-        <div class="cat-glass"><h3>Kerala Set Mundu</h3><span>SHOP NOW</span></div>
-      </a>
-      <!-- Malkotta Sarees -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><path d="M70 10 Q40 120 70 230" fill="none" stroke="#0B6B53" stroke-width="2.5"/><path d="M130 10 Q160 120 130 230" fill="none" stroke="#0B6B53" stroke-width="2.5"/><path d="M70 30 Q100 46 130 30" fill="none" stroke="#C8A24D" stroke-width="4"/><path d="M70 210 Q100 226 130 210" fill="none" stroke="#C8A24D" stroke-width="4"/></svg>
+        <div class="vintage-content">
+          <h3>Kerala Set Mundu</h3>
+          <span>Explore Collection</span>
         </div>
-        <div class="cat-glass"><h3>Malkotta Sarees</h3><span>SHOP NOW</span></div>
       </a>
-      <!-- Kasavu Mundu Men -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><rect x="60" y="20" width="80" height="190" fill="none" stroke="#0B6B53" stroke-width="2.5"/><rect x="60" y="188" width="80" height="10" fill="#C8A24D"/><line x1="100" y1="20" x2="100" y2="188" stroke="#C8A24D" stroke-width="1" stroke-dasharray="2 6"/></svg>
+
+      <!-- 02 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 02</span>
+          <div class="img-inner">
+            <img src="assets/malkotta-saree.png" alt="Malkotta Saree">
+          </div>
         </div>
-        <div class="cat-glass"><h3>Men's Kasavu Mundu</h3><span>SHOP NOW</span></div>
-      </a>
-      <!-- Dance Costumes -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><circle cx="100" cy="46" r="14" fill="none" stroke="#0B6B53" stroke-width="2.5"/><path d="M100 60 L100 130 M100 90 L60 70 M100 90 L140 70 M100 130 L65 210 M100 130 L135 210" fill="none" stroke="#0B6B53" stroke-width="2.5" stroke-linecap="round"/><path d="M70 140 Q100 170 130 140" fill="none" stroke="#C8A24D" stroke-width="3"/></svg>
+        <div class="vintage-content">
+          <h3>Malkotta Sarees</h3>
+          <span>Explore Collection</span>
         </div>
-        <div class="cat-glass"><h3>Classical Dance Costumes</h3><span>SHOP NOW</span></div>
       </a>
-      <!-- Temple Jewellery -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><circle cx="100" cy="60" r="30" fill="none" stroke="#C8A24D" stroke-width="3"/><circle cx="100" cy="60" r="14" fill="none" stroke="#0B6B53" stroke-width="2"/><path d="M74 84 Q70 160 100 210 Q130 160 126 84" fill="none" stroke="#C8A24D" stroke-width="2.5"/></svg>
+
+      <!-- 03 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 03</span>
+          <div class="img-inner">
+            <img src="assets/mund.png" alt="Men's Kasavu Mundu">
+          </div>
         </div>
-        <div class="cat-glass"><h3>Temple Jewellery</h3><span>SHOP NOW</span></div>
-      </a>
-      <!-- Aranmula Kannadi -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><ellipse cx="100" cy="100" rx="55" ry="70" fill="none" stroke="#0B6B53" stroke-width="3"/><ellipse cx="100" cy="100" rx="40" ry="54" fill="none" stroke="#C8A24D" stroke-width="1.6"/><rect x="92" y="168" width="16" height="50" fill="none" stroke="#C8A24D" stroke-width="2.5"/></svg>
+        <div class="vintage-content">
+          <h3>Men's Kasavu</h3>
+          <span>Explore Collection</span>
         </div>
-        <div class="cat-glass"><h3>Aranmula Kannadi</h3><span>SHOP NOW</span></div>
       </a>
-      <!-- Dance Accessories -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><circle cx="70" cy="90" r="16" fill="none" stroke="#C8A24D" stroke-width="2.5"/><circle cx="130" cy="90" r="16" fill="none" stroke="#C8A24D" stroke-width="2.5"/><path d="M60 150 Q100 180 140 150" fill="none" stroke="#0B6B53" stroke-width="2.5"/><circle cx="100" cy="160" r="4" fill="#C8A24D"/></svg>
+
+      <!-- 04 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 04</span>
+          <div class="img-inner">
+            <img src="assets/claaassical.png" alt="Classical Dance Costumes">
+          </div>
         </div>
-        <div class="cat-glass"><h3>Dance Accessories</h3><span>SHOP NOW</span></div>
-      </a>
-      <!-- Heritage Gift Collections -->
-      <a href="#" class="cat-card reveal">
-        <div class="arrow">↗</div>
-        <div class="cat-illus">
-          <svg viewBox="0 0 200 240"><rect x="55" y="90" width="90" height="80" fill="none" stroke="#0B6B53" stroke-width="2.5"/><path d="M55 90 L145 90" stroke="#C8A24D" stroke-width="4"/><path d="M100 90 L100 170" stroke="#C8A24D" stroke-width="4"/><path d="M80 90 Q100 60 120 90" fill="none" stroke="#C8A24D" stroke-width="3"/></svg>
+        <div class="vintage-content">
+          <h3>Classical Attire</h3>
+          <span>Explore Collection</span>
         </div>
-        <div class="cat-glass"><h3>Heritage Gift Sets</h3><span>SHOP NOW</span></div>
       </a>
+
+      <!-- 05 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 05</span>
+          <div class="img-inner">
+            <img src="assets/ornaments.png" alt="C Jewellery">
+          </div>
+        </div>
+        <div class="vintage-content">
+          <h3>Temple Jewellery</h3>
+          <span>Explore Collection</span>
+        </div>
+      </a>
+
+      <!-- 06 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 06</span>
+          <div class="img-inner">
+            <img src="assets/aranmula.jpeg" alt="Aranmula Kannadi">
+          </div>
+        </div>
+        <div class="vintage-content">
+          <h3>Aranmula Kannadi</h3>
+          <span>Explore Collection</span>
+        </div>
+      </a>
+
+      <!-- 07 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 07</span>
+          <div class="img-inner">
+            <img src="assets/dance-accessories.png" alt="Dance Accessories">
+          </div>
+        </div>
+        <div class="vintage-content">
+          <h3>Dance Accessories</h3>
+          <span>Explore Collection</span>
+        </div>
+      </a>
+
+      <!-- 08 -->
+      <a href="#" class="vintage-card">
+        <div class="img-frame">
+          <span class="vintage-index">NO. 08</span>
+          <div class="img-inner">
+            <img src="assets/heritage-gifts.png" alt="Heritage Gift Sets">
+          </div>
+        </div>
+        <div class="vintage-content">
+          <h3>Heritage Gifts</h3>
+          <span>Explore Collection</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
-
 <div class="kasavu-divider on-sand" aria-hidden="true"><svg viewBox="0 0 400 34" preserveAspectRatio="none"><use href="#kasavu-pattern"/></svg></div>
 
 <!-- ============ NEW ARRIVALS ============ -->
@@ -1024,9 +1234,9 @@ footer ul a:hover{ color:var(--gold-light); }
       <div>
         <h5>Contact</h5>
         <ul class="f-contact">
-          <li>Studio Boutique, MG Road<br>Kochi, Kerala 682016</li>
+          <li>TanvibyLakshya<br>Aranmula</li>
           <li>+91 98 4XX XXXXX</li>
-          <li>hello@tanvibylakshya.com</li>
+          <li>tanvibylakshyam@gmail.com</li>
         </ul>
       </div>
     </div>
