@@ -4,16 +4,28 @@
    TANVI BY LAKSHYA — DESIGN TOKENS
    ============================================================ */
 :root {
-  --ivory: #FFFDF8;
-  --gold: #C8A24D;
-  --gold-light: #E8C874;
-  --gold-deep: #9C7A2F;
-  --emerald: #0B6B53;
-  --emerald-deep: #073F31;
-  --sand: #F4EEE3;
-  --charcoal: #1E1E1E;
-  --charcoal-soft: #2A2A28;
+  /* Backgrounds */
+  --ivory: #FDF9F4;
+  --cream: #F7F2EB;
+  --soft-rose: #F3ECEB;
 
+  /* Brand Colors */
+  --burgundy: #8E2D45;      /* Main logo color */
+  --burgundy-dark: #641D31;
+  --burgundy-light: #B84B68;
+
+  /* Luxury Accent */
+  --champagne-gold: #C8A46B;
+  --gold-light: #E5C88A;
+  --gold-dark: #8F6A2F;
+
+  /* Text */
+  --charcoal: #1F1C1D;
+  --charcoal-soft: #434041;
+
+  /* Borders */
+  --border: #E7D9CE;
+}
   --display: 'Cormorant Garamond', serif;
   --heading: 'Playfair Display', serif;
   --body: 'Manrope', sans-serif;
