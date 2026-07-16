@@ -1,9 +1,17 @@
 // ==========================================
 // WHATSAPP DYNAMIC INQUIRY ROUTING
 // ==========================================
-function inquireProduct(productName, productPrice) {
+function inquireProduct(productName, productPrice, imageUrl) {
   const WHATSAPP_NUMBER = '916282620756'; 
-  const message = `Namaskaram! I am interested in exploring the Tanvi heritage collection. I would like more details regarding the ${productName} (Listed at ₹${productPrice}).`;
+  
+  // Create the base message
+  let message = `Namaskaram! I am interested in exploring the Tanvi heritage collection. I would like more details regarding the ${productName} (Listed at ₹${productPrice}).`;
+  
+  // If an image URL is provided, add it to the message
+  if (imageUrl) {
+      message += `\n\nProduct Image Reference: ${imageUrl}`;
+  }
+
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   window.open(waLink, '_blank');
 }
@@ -24,6 +32,9 @@ const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASE
 
 // Luxury Product Card Generator
 function generateProductCard(product) {
+  // We use .replace(/'/g, "\\'") to prevent product names with apostrophes from breaking the code
+  const safeTitle = product.title.replace(/'/g, "\\'");
+  
   return `
     <article class="p-card">
       <div class="p-media">
@@ -38,10 +49,12 @@ function generateProductCard(product) {
           <span class="now">₹${product.price}</span>
           ${product.originalPrice ? `<span class="was">₹${product.originalPrice}</span>` : ''}
         </div>
-        <a href="javascript:void(0)" onclick="inquireProduct('${product.title}', '${product.price}')" class="p-cta">Enquire on WhatsApp</a>
+        <!-- We now pass the product.imageUrl into the function -->
+        <a href="javascript:void(0)" onclick="inquireProduct('${safeTitle}', '${product.price}', '${product.imageUrl}')" class="p-cta">Enquire on WhatsApp</a>
       </div>
     </article>`;
 }
+
 
 // Fetch and Inject Sanity Data
 document.addEventListener('DOMContentLoaded', () => {
