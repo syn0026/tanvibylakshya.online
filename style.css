@@ -98,13 +98,14 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand img { 
-  height: 65px; /* Increase this number to make it taller */
-  width: auto;  /* 'auto' keeps the logo from looking stretched */
+  height: 90px; /* Increased from 65px */
+  width: auto; 
   transition: height .4s var(--ease); 
   filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); 
 }
+
 .navbar.scrolled .brand img { 
-  height: 50px; /* Size of the logo when the user scrolls down */
+  height: 70px; /* Increased from 50px so it stays visible when scrolling */
   width: auto; 
 }
 .brand-word {
