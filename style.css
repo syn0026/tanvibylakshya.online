@@ -203,11 +203,13 @@ a:focus-visible, button:focus-visible, input:focus-visible {
    ============================================================ */
 .hero {
   position: relative; min-height: 100svh; display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
+  overflow: hidden; padding-top: 80px;
   background:
     radial-gradient(ellipse 90% 60% at 50% 12%, rgba(200,162,77,.20), transparent 60%),
-    radial-gradient(ellipse 70% 60% at 15% 90%, rgba(11,107,83,.35), transparent 60%),
-    linear-gradient(160deg, #14201d 0%, #1E1E1E 45%, #10201b 100%);
+    /* Changed bottom glow to Maroon */
+    radial-gradient(ellipse 70% 60% at 15% 90%, rgba(139,35,50,.35), transparent 60%),
+    /* Warmed up the dark background */
+    linear-gradient(160deg, #201416 0%, #1E1E1E 45%, #180d0f 100%);
 }
 .hero-arch {
   position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
