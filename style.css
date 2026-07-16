@@ -225,9 +225,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--peach-light);
 }
 .ed-img-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1.2s var(--ease), filter 0.6s;
-  filter: sepia(0.2) contrast(1.05);
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+  transition: transform 1.2s var(--ease), filter 0.6s, -webkit-filter 0.6s;
+  
+  /* Safe Cross-Browser Filters using Percentages */
+  -webkit-filter: sepia(20%) contrast(105%);
+  filter: sepia(20%) contrast(105%);
 }
 
 .ed-overlay {
@@ -262,7 +267,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .p-info { padding: 25px 20px; text-align: center; }
 .cat-name { font-family: var(--display); font-size: 0.8rem; letter-spacing: 2px; color: var(--gold); display: block; margin-bottom: 8px; }
 .p-info h4 { font-family: var(--heading); font-size: 1.3rem; font-weight: 400; color: var(--text-dark); margin-bottom: 12px; }
-.p-price { font-family: var(--body); font-weight: 600; font-size: 1.1rem; color: var(--maroon); margin-bottom: 20px; }
+/* ============================================================
+   PRODUCT PRICING (Updated Hierarchy)
+   ============================================================ */
+.p-price { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 12px; /* Adds clean spacing between the two prices */
+  font-family: var(--body); 
+  margin-bottom: 20px; 
+}
+
+/* Highlight the discounted price */
+.p-price .now { 
+  font-weight: 800; 
+  font-size: 1.2rem; 
+  color: var(--maroon-deep); 
+}
+
+/* Add the cross mark (strikethrough) and mute the old price */
+.p-price .was { 
+  text-decoration: line-through; 
+  text-decoration-color: rgba(160, 40, 60, 0.6); /* Soft maroon strikethrough line */
+  text-decoration-thickness: 1.5px;
+  color: #a3968e; /* Muted taupe/grey */
+  font-size: 0.95rem; 
+  font-weight: 500;
+}
 .p-cta { display: block; width: 100%; padding: 14px; background: var(--peach-light); color: var(--maroon); font-size: 0.8rem; letter-spacing: 1px; font-weight: 600; text-transform: uppercase; transition: all 0.3s; }
 .p-cta:hover { background: var(--maroon); color: var(--white); }
 
@@ -279,18 +311,37 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .h-stats { display: flex; gap: 40px; margin: 40px 0; border-top: 1px solid rgba(160,40,60,0.2); border-bottom: 1px solid rgba(160,40,60,0.2); padding: 20px 0; }
 .h-stats div strong { font-family: var(--display); font-size: 2.5rem; color: var(--maroon); display: block; line-height: 1; }
 .h-stats div span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); font-weight: 600; }
-
 /* ============================================================
    FOOTER & NEWSLETTER
    ============================================================ */
-.luxury-footer { background: var(--maroon-deep); color: var(--peach-bg); position: relative; padding-top: 160px; margin-top: 100px;}
-.newsletter-box {
-  position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-  width: 90%; max-width: 900px; background: var(--maroon); padding: 60px 40px;
-  text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid rgba(239, 215, 199, 0.2);
+.luxury-footer { 
+  background: var(--maroon-deep); 
+  color: var(--peach-bg); 
+  position: relative; 
+  margin-top: 120px;
 }
-.newsletter-box h2 { font-family: var(--display); font-size: 2.5rem; color: var(--white); letter-spacing: 4px; text-transform: uppercase; margin: 10px 0; }
-.newsletter-box p { color: var(--peach-bg); margin-bottom: 30px; font-size: 1.1rem; opacity: 0.9;}
+
+/* Invisible block to prevent the negative margin from collapsing */
+.luxury-footer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 100%;
+}
+
+.newsletter-box {
+  /* Safely pulls the box up and centers it without relying on transforms */
+  margin: -90px auto 60px auto; 
+  position: relative;
+  z-index: 10;
+  width: 90%; 
+  max-width: 900px; 
+  background: var(--maroon); 
+  padding: 60px 40px;
+  text-align: center; 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+  border: 1px solid rgba(239, 215, 199, 0.2);
+}
 .nform { display: flex; max-width: 500px; margin: 0 auto; border-bottom: 1px solid var(--peach-bg); padding-bottom: 5px; }
 .nform input { flex: 1; background: transparent; border: none; color: var(--white); font-family: var(--body); font-size: 1rem; outline: none; }
 .nform input::placeholder { color: rgba(239, 215, 199, 0.6); }
@@ -332,8 +383,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-title { font-size: 2.8rem; }
   .script-accent { font-size: 2.5rem; }
   .editorial-header h2 { font-size: 2rem; }
-  .newsletter-box { position: relative; top: 0; width: 100%; transform: none; left: 0; border: none; box-shadow: none; border-bottom: 1px solid rgba(239,215,199,0.2);}
-  .luxury-footer { padding-top: 0; margin-top: 0; }
+  .newsletter-box { 
+    margin: 0 auto 40px auto; /* Resets the negative margin on mobile */
+    width: 100%; 
+    border: none; 
+    box-shadow: none; 
+    border-bottom: 1px solid rgba(239,215,199,0.2);
+  }
+  .luxury-footer { margin-top: 0; padding-top: 40px; }
+  .luxury-footer::before { display: none; }
   .f-grid { grid-template-columns: 1fr; gap: 40px; }
   
   .nav-links { position: fixed; top: 0; right: 0; height: 100svh; width: 85vw; background: var(--peach-light); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 120px 40px; gap: 30px; transform: translateX(100%); transition: transform .6s var(--ease); box-shadow: -10px 0 50px rgba(160,40,60,.1); }
