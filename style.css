@@ -1,40 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+Malayalam:wght@400;500;600;700&display=swap');
 /* ============================================================
    TANVI BY LAKSHYA — DESIGN TOKENS
    ============================================================ */
 :root {
-  /* Backgrounds */
-  --ivory: #FDF9F4;
-  --cream: #F7F2EB;
-  --soft-rose: #F3ECEB;
 
-  /* Brand Colors */
-  --burgundy: #8E2D45;      /* Main logo color */
-  --burgundy-dark: #641D31;
-  --burgundy-light: #B84B68;
+  /* ===== Brand Colors ===== */
 
-  /* Luxury Accent */
-  --champagne-gold: #C8A46B;
-  --gold-light: #E5C88A;
-  --gold-dark: #8F6A2F;
+  --background: #FDF9F4;
+  --section: #F7F2EB;
 
-  /* Text */
-  --charcoal: #1F1C1D;
-  --charcoal-soft: #434041;
+  --primary: #8E2D45;
+  --primary-dark: #641D31;
+  --primary-light: #B84B68;
 
-  /* Borders */
+  --accent: #C8A46B;
+  --accent-light: #E5C88A;
+  --accent-dark: #8F6A2F;
+
+  --text: #1F1C1D;
+  --text-secondary: #55514F;
+
   --border: #E7D9CE;
-}
-  --display: 'Cormorant Garamond', serif;
-  --heading: 'Playfair Display', serif;
-  --body: 'Manrope', sans-serif;
-  --mal: 'Noto Serif Malayalam', serif;
+  --success: #2F6B4F;
 
-  --gold-grad: linear-gradient(120deg, var(--gold-deep) 0%, var(--gold) 45%, var(--gold-light) 65%, var(--gold) 100%);
-  --ease: cubic-bezier(.22,.61,.36,1);
-}
+  /* ===== Typography ===== */
 
+  --display: "Cormorant Garamond", serif;
+  --heading: "Playfair Display", serif;
+  --body: "Manrope", sans-serif;
+  --mal: "Noto Serif Malayalam", serif;
+
+  /* ===== Gradients ===== */
+
+  --gold-grad: linear-gradient(
+    135deg,
+    var(--accent-dark) 0%,
+    var(--accent) 35%,
+    var(--accent-light) 65%,
+    var(--accent) 100%
+  );
+
+  --burgundy-grad: linear-gradient(
+    135deg,
+    var(--primary-dark) 0%,
+    var(--primary) 50%,
+    var(--primary-light) 100%
+  );
+
+  --luxury-grad: linear-gradient(
+    135deg,
+    var(--primary-dark) 0%,
+    var(--primary) 45%,
+    var(--accent) 100%
+  );
+
+  /* ===== Effects ===== */
+
+  --shadow-soft: 0 8px 30px rgba(142, 45, 69, 0.12);
+  --shadow-medium: 0 15px 40px rgba(142, 45, 69, 0.18);
+  --shadow-gold: 0 10px 30px rgba(200, 164, 107, 0.18);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition: all 0.35s var(--ease);
+
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
