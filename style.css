@@ -97,8 +97,16 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   box-shadow: 0 1px 0 rgba(30,30,30,.06), 0 12px 30px -20px rgba(30,30,30,.25);
 }
 .brand { display: flex; align-items: center; gap: 12px; }
-.brand img { height: 44px; width: 44px; transition: height .4s var(--ease), width .4s var(--ease); filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
-.navbar.scrolled .brand img { height: 36px; width: 36px; }
+.brand img { 
+  height: 65px; /* Increase this number to make it taller */
+  width: auto;  /* 'auto' keeps the logo from looking stretched */
+  transition: height .4s var(--ease); 
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); 
+}
+.navbar.scrolled .brand img { 
+  height: 50px; /* Size of the logo when the user scrolls down */
+  width: auto; 
+}
 .brand-word {
   font-family: var(--heading);
   font-size: 1.28rem;
