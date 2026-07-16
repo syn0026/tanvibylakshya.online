@@ -131,3 +131,36 @@ if(nform) {
     e.target.reset();
   });
 }
+// ==========================================
+// LIVE INSTAGRAM FEED (INSTAFEED.JS)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  const instafeedContainer = document.getElementById('instafeed');
+  
+  if (instafeedContainer) {
+    var userFeed = new Instafeed({
+      get: 'user',
+      // How many posts do you want to show? (4 looks best in this grid)
+      limit: 4, 
+      // Put your Free Instagram Access Token inside these quotes:
+      accessToken: 'YOUR_FREE_INSTAGRAM_ACCESS_TOKEN_HERE', 
+      
+      // This template wraps your live photos in your luxury CSS arches!
+      template: `
+        <a href="{{link}}" target="_blank" class="ed-card">
+          <div class="ed-frame">
+            <div class="ed-img-wrap">
+              <img src="{{image}}" alt="Tanvi by Lakshya Instagram Post" />
+            </div>
+            <div class="ed-overlay">
+              <span class="ed-index">IG</span>
+              <h3>@tanvibylakshya</h3>
+              <span class="ed-link">View Post</span>
+            </div>
+          </div>
+        </a>
+      `
+    });
+    userFeed.run();
+  }
+});
