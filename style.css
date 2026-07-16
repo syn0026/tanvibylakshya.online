@@ -213,7 +213,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px 30px;
 }
 .ed-card {
-  display: block; position: relative; text-decoration: none; group;
+  display: block; 
+  position: relative; 
+  text-decoration: none;
 }
 .ed-card:nth-child(even) { margin-top: 60px; } /* Asymmetrical layout */
 
