@@ -140,7 +140,7 @@ if(nform) {
 const collectionsDB = {
   'setmundu': [
     { title: "Premium Gold Tissue Set", price: "4,500", originalPrice: "5,200", img: "assets/setummund.png" },
-    { title: "Handloom Mural Painted Set", price: "6,200", originalPrice: "", img: "assets/setummund.png" }
+    { title: "Handloom Mural Painted Set", price: "6,200", originalPrice: "7000", img: "assets/setummund.png" }
   ],
   'malkotta': [
     { title: "Pure Malkotta Cotton Saree", price: "3,800", originalPrice: "4,500", img: "assets/malkotta-saree.png" },
