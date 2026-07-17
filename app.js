@@ -132,35 +132,41 @@ if(nform) {
   });
 }
 // ==========================================
-// LIVE INSTAGRAM FEED (INSTAFEED.JS)
+// LIVE INSTAGRAM FEED (BEHOLD API)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   const instafeedContainer = document.getElementById('instafeed');
   
+  // Your unique Behold JSON Feed URL
+  const BEHOLD_URL = 'https://feeds.behold.so/SPiiC83bNipZbUjw9VKg';
+  
   if (instafeedContainer) {
-    var userFeed = new Instafeed({
-      get: 'user',
-      // How many posts do you want to show? (4 looks best in this grid)
-      limit: 4, 
-      // Put your Free Instagram Access Token inside these quotes:
-      accessToken: 'YOUR_FREE_INSTAGRAM_ACCESS_TOKEN_HERE', 
-      
-      // This template wraps your live photos in your luxury CSS arches!
-      template: `
-        <a href="{{link}}" target="_blank" class="ed-card">
-          <div class="ed-frame">
-            <div class="ed-img-wrap">
-              <img src="{{image}}" alt="Tanvi by Lakshya Instagram Post" />
+    fetch(BEHOLD_URL)
+      .then(response => response.json())
+      .then(posts => {
+        // Show only the 4 most recent posts to keep the grid balanced
+        const recentPosts = posts.slice(0, 4);
+        
+        // Inject the live photos directly into your custom CSS arches
+        instafeedContainer.innerHTML = recentPosts.map((post, index) => `
+          <a href="${post.permalink}" target="_blank" class="ed-card reveal delay-${index % 3} in">
+            <div class="ed-frame">
+              <div class="ed-img-wrap">
+                <!-- If the post is a video, it uses the thumbnail image -->
+                <img src="${post.thumbnailUrl || post.mediaUrl}" alt="Tanvi by Lakshya Instagram" />
+              </div>
+              <div class="ed-overlay">
+                <span class="ed-index">0${index + 1}</span>
+                <h3>@tanvibylakshya</h3>
+                <span class="ed-link">View Post</span>
+              </div>
             </div>
-            <div class="ed-overlay">
-              <span class="ed-index">IG</span>
-              <h3>@tanvibylakshya</h3>
-              <span class="ed-link">View Post</span>
-            </div>
-          </div>
-        </a>
-      `
-    });
-    userFeed.run();
+          </a>
+        `).join('');
+      })
+      .catch(error => {
+        console.error("Error loading Instagram feed:", error);
+        instafeedContainer.innerHTML = `<p style="text-align:center; width:100%; color:var(--maroon);">Follow us on Instagram @tanvibylakshya</p>`;
+      });
   }
 });
