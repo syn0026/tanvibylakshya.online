@@ -139,8 +139,8 @@ if(nform) {
 // You can easily update prices, titles, and image paths here!
 const collectionsDB = {
   'setmundu': [
-    { title: "PREMIUM SET MUND HEMANGI", price: "999", originalPrice: "1299", img: "assets/hemant.png" },
-    //{ title: "Handloom Mural Painted Set", price: "6,200", originalPrice: "7000", img: "assets/setummund.png" }
+    { title: "Hemangi", price: "999", originalPrice: "1299", img: "assets/hemant.png" },
+    { title: "Sooryakanthi", price: "6,200", originalPrice: "7000", img: "assets/suriyakathi.png" }
   ],
   'malkotta': [
     { title: "Pure Malkotta Cotton Saree", price: "3,800", originalPrice: "4,500", img: "assets/malkotta-saree.png" },
