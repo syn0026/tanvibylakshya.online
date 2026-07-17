@@ -139,7 +139,7 @@ if(nform) {
 // You can easily update prices, titles, and image paths here!
 const collectionsDB = {
   'setmundu': [
-    { title: "Premium Gold Tissue Set", price: "4,500", originalPrice: "5,200", img: "assets/setummund.png" },
+    { title: "PREMIUM SET MUND", price: "4,500", originalPrice: "5,200", img: "assets/setummund.png" },
     { title: "Handloom Mural Painted Set", price: "6,200", originalPrice: "7000", img: "assets/setummund.png" }
   ],
   'malkotta': [
