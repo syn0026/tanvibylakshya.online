@@ -116,7 +116,7 @@
       <!-- 02 -->
       <a href="#" class="ed-card reveal delay-1">
         <div class="ed-frame">
-          <div class="ed-img-wrap"><img src="assets/malkotta-saree.png" alt="Malkotta Saree"></div>
+          <div class="ed-img-wrap"><img src="assets/malkotta-saree.png" alt="Mal cotton Saree"></div>
           <div class="ed-overlay">
             <span class="ed-index">02</span>
             <h3>Malkotta Sarees</h3>
@@ -218,7 +218,7 @@
     <div class="heritage-split">
       <div class="h-image reveal">
         <div class="h-img-inner">
-          <img src="assets/claaassical.png" alt="Heritage Dancer">
+          <img src="assets/mohiniyattam.jpeg" alt="Heritage Dancer">
         </div>
         <div class="h-decorative-border"></div>
       </div>
@@ -274,8 +274,8 @@
     </div>
   </div>
 </section>
-<!-- ============ INSTAGRAM GALLERY (LIVE BEHOLD API) ============ -->
-<section class="section" id="instagram">
+<!-- ============ INSTAGRAM GALLERY (PREMIUM LIVELY FEED) ============ -->
+<section class="section" id="instagram" style="background: var(--peach-bg);">
   <div class="container">
     <div class="editorial-header reveal">
       <span class="mal-accent">ഇൻസ്റ്റാഗ്രാം · Follow along</span>
@@ -283,42 +283,46 @@
       <div class="header-line"></div>
     </div>
     
-    <!-- This empty box is where the photos will appear -->
-    <div id="instafeed" class="editorial-grid"></div>
+    <!-- This is our new Luxury Grid Container -->
+    <div id="instafeed" class="premium-ig-grid"></div>
     
   </div>
 </section>
 
-<!-- INLINE SCRIPT: Bypasses browser cache to guarantee it loads -->
+<!-- INLINE SCRIPT: With Live Auto-Play Video Support -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const feedContainer = document.getElementById('instafeed');
     if (!feedContainer) return;
 
-    // Fetching your live photos using your exact Behold ID
     fetch('https://feeds.behold.so/SPiiC83bNipZbUjw9VKg')
       .then(res => res.json())
       .then(data => {
-        // Behold sometimes wraps data in a 'posts' array
         const posts = Array.isArray(data) ? data : data.posts;
-        const recent = posts.slice(0, 4);
+        const recent = posts.slice(0, 4); // Shows exactly 4 posts for the perfect grid
 
-        // Injecting the photos into your luxury CSS arches
         feedContainer.innerHTML = recent.map((post, index) => {
-          // Grab the correct image whether it is a photo, carousel, or video reel
+          const isVideo = post.mediaType === 'VIDEO' || post.media_type === 'VIDEO';
           const imgUrl = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
+          const videoUrl = post.mediaUrl || post.media_url;
           const postLink = post.permalink || post.perma_link;
 
+          // If it's a video, play it silently! Otherwise, show the beautiful image.
+          const mediaElement = isVideo 
+            ? `<video src="${videoUrl}" poster="${imgUrl}" autoplay muted loop playsinline class="ig-media"></video>`
+            : `<img src="${imgUrl}" alt="Tanvi by Lakshya" class="ig-media" />`;
+
           return `
-            <a href="${postLink}" target="_blank" class="ed-card" style="opacity: 1; transform: translateY(0);">
-              <div class="ed-frame">
-                <div class="ed-img-wrap">
-                  <img src="${imgUrl}" alt="Tanvi by Lakshya Instagram" />
+            <a href="${postLink}" target="_blank" class="premium-ig-item reveal delay-${index % 3} in" style="opacity: 1; transform: translateY(0);">
+              <div class="ig-frame">
+                <div class="ig-media-wrap">
+                  ${mediaElement}
                 </div>
-                <div class="ed-overlay">
-                  <span class="ed-index">0${index + 1}</span>
-                  <h3>@tanvibylakshya</h3>
-                  <span class="ed-link">View Post</span>
+                <div class="ig-overlay">
+                  <div class="ig-overlay-content">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+                    <span>Explore Story</span>
+                  </div>
                 </div>
               </div>
             </a>
