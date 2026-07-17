@@ -140,27 +140,29 @@ if(nform) {
 const collectionsDB = {
   'setmundu': [
     { title: "Hemangi", price: "999", originalPrice: "1299", img: "assets/hemant.png" },
-    { title: "Sooryakanthi", price: "785", originalPrice: "899", img: "assets/Sooryakanthi.png" }
-    { title: "Gaja vaibhavam", price: "699", originalPrice: "799", img: "assets/gaja.png" }      
+    { title: "Sooryakanthi", price: "785", originalPrice: "899", img: "assets/Sooryakanthi.png" },
+    { title: "Gaja vaibhavam", price: "699", originalPrice: "799", img: "assets/gaja.png" },
+   { title: "Pallavi", price: "1099", originalPrice: "1280", img: "assets/pallavi.png" },      
+      { title: "Ela", price: "799", originalPrice: "870", img: "assets/illa.png" },
   ],
   'malkotta': [
-    { title: "Pure Malkotta Cotton Saree", price: "3,800", originalPrice: "4,500", img: "assets/malkotta-saree.png" },
-    { title: "Malkotta with Kasavu Border", price: "4,100", originalPrice: "", img: "assets/malkotta-saree.png" }
+    //{ title: "Pure Malkotta Cotton Saree", price: "3,800", originalPrice: "4,500", img: "assets/malkotta-saree.png" },
+    //{ title: "Malkotta with Kasavu Border", price: "4,100", originalPrice: "", img: "assets/malkotta-saree.png" }
   ],
   'mens': [
-    { title: "Heritage Gold Border Mundu", price: "3,450", originalPrice: "", img: "assets/mund.png" },
-    { title: "Premium Wedding Kasavu", price: "5,000", originalPrice: "6,500", img: "assets/mund.png" }
+    //{ title: "Heritage Gold Border Mundu", price: "3,450", originalPrice: "", img: "assets/mund.png" },
+    //{ title: "Premium Wedding Kasavu", price: "5,000", originalPrice: "6,500", img: "assets/mund.png" }
   ],
   'dance': [
-    { title: "Mohiniyattam Authentic Attire", price: "8,500", originalPrice: "9,999", img: "assets/claaassical.png" }
+    //{ title: "Mohiniyattam Authentic Attire", price: "8,500", originalPrice: "9,999", img: "assets/claaassical.png" }
   ],
   'jewellery': [
-    { title: "Nagas Choker Set", price: "12,000", originalPrice: "14,500", img: "assets/ornaments.png" },
-    { title: "Traditional Palakkal Mala", price: "9,500", originalPrice: "", img: "assets/ornaments.png" }
+    //{ title: "Nagas Choker Set", price: "12,000", originalPrice: "14,500", img: "assets/ornaments.png" },
+    //{ title: "Traditional Palakkal Mala", price: "9,500", originalPrice: "", img: "assets/ornaments.png" }
   ],
   'aranmula': [
-    { title: "Royal Hand Mirror", price: "8,900", originalPrice: "", img: "assets/aranmula.webp" },
-    { title: "Peacock Base Valkannadi", price: "14,000", originalPrice: "15,500", img: "assets/aranmula.webp" }
+    //{ title: "Royal Hand Mirror", price: "8,900", originalPrice: "", img: "assets/aranmula.webp" },
+    //{ title: "Peacock Base Valkannadi", price: "14,000", originalPrice: "15,500", img: "assets/aranmula.webp" }
   ]
 };
 
