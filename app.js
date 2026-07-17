@@ -140,7 +140,8 @@ if(nform) {
 const collectionsDB = {
   'setmundu': [
     { title: "Hemangi", price: "999", originalPrice: "1299", img: "assets/hemant.png" },
-    { title: "Sooryakanthi", price: "6,200", originalPrice: "7000", img: "assets/Sooryakanthi.png" }
+    { title: "Sooryakanthi", price: "785", originalPrice: "899", img: "assets/Sooryakanthi.png" }
+    { title: "Gaja vaibhavam", price: "699", originalPrice: "799", img: "assets/gaja.png" }      
   ],
   'malkotta': [
     { title: "Pure Malkotta Cotton Saree", price: "3,800", originalPrice: "4,500", img: "assets/malkotta-saree.png" },
