@@ -275,21 +275,117 @@
   </div>
 </section>
 <!-- ============ INSTAGRAM GALLERY (PREMIUM LIVELY FEED) ============ -->
-<section class="section" id="instagram" style="background: var(--peach-bg);">
+<section class="section" id="instagram" style="background: var(--peach-bg); padding: 120px 0;">
   <div class="container">
-    <div class="editorial-header reveal">
+    <div class="editorial-header">
       <span class="mal-accent">ഇൻസ്റ്റാഗ്രാം · Follow along</span>
       <h2>@tanvibylakshya</h2>
-      <div class="header-line"></div>
+      <div class="header-line" style="width: 60px; height: 1px; background: #a0283c; margin: 20px auto 0;"></div>
     </div>
     
-    <!-- This is our new Luxury Grid Container -->
+    <!-- This is our Luxury Grid Container -->
     <div id="instafeed" class="premium-ig-grid"></div>
     
   </div>
 </section>
 
-<!-- INLINE SCRIPT: With Live Auto-Play Video Support -->
+<!-- INLINE CSS: Bypasses style sheet cache to fix the grid layout instantly -->
+<style>
+.premium-ig-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 25px !important;
+  padding: 40px 0 60px !important;
+  width: 100% !important;
+}
+
+.premium-ig-item {
+  display: block !important;
+  position: relative !important;
+  text-decoration: none !important;
+  width: 100% !important;
+}
+
+/* Elegant asymmetrical fashion stagger */
+@media (min-width: 1025px) {
+  .premium-ig-item:nth-child(even) {
+    margin-top: 60px !important; 
+  }
+}
+
+.ig-frame {
+  background: #ffffff !important;
+  padding: 10px !important;
+  border: 1px solid rgba(160, 40, 60, 0.15) !important;
+  border-radius: 160px 160px 0 0 !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  position: relative !important;
+}
+
+.ig-media-wrap {
+  aspect-ratio: 3/4 !important;
+  overflow: hidden !important;
+  border-radius: 150px 150px 0 0 !important;
+  position: relative !important;
+  background: #f7e6db !important;
+}
+
+.ig-media {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  -webkit-filter: sepia(15%) contrast(105%) brightness(0.95) !important;
+  filter: sepia(15%) contrast(105%) brightness(0.95) !important;
+}
+
+.ig-overlay {
+  position: absolute !important;
+  inset: 10px !important;
+  border-radius: 150px 150px 0 0 !important;
+  background: linear-gradient(to top, rgba(112, 26, 40, 0.9) 0%, rgba(160, 40, 60, 0.4) 100%) !important;
+  opacity: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.ig-overlay-content {
+  color: #ffffff !important;
+  text-align: center !important;
+  transform: translateY(15px) !important;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.premium-ig-item:hover .ig-frame {
+  transform: translateY(-12px) !important;
+  border-color: #a0283c !important;
+  box-shadow: 0 20px 40px rgba(160, 40, 60, 0.15) !important;
+}
+
+.premium-ig-item:hover .ig-media {
+  transform: scale(1.08) !important;
+  -webkit-filter: sepia(0%) contrast(100%) brightness(1) !important;
+  filter: sepia(0%) contrast(100%) brightness(1) !important;
+}
+
+.premium-ig-item:hover .ig-overlay { opacity: 1 !important; }
+.premium-ig-item:hover .ig-overlay-content { transform: translateY(0) !important; }
+
+/* Responsive break-points for fluid look on all devices */
+@media (max-width: 1024px) {
+  .premium-ig-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+  .premium-ig-item:nth-child(even) { margin-top: 40px !important; }
+}
+@media (max-width: 600px) {
+  .premium-ig-grid { grid-template-columns: 1fr !important; }
+  .premium-ig-item:nth-child(even) { margin-top: 0 !important; }
+}
+</style>
+
+<!-- INLINE SCRIPT: Safely injects the lively assets into the fresh grid layout -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const feedContainer = document.getElementById('instafeed');
@@ -299,7 +395,7 @@
       .then(res => res.json())
       .then(data => {
         const posts = Array.isArray(data) ? data : data.posts;
-        const recent = posts.slice(0, 4); // Shows exactly 4 posts for the perfect grid
+        const recent = posts.slice(0, 4);
 
         feedContainer.innerHTML = recent.map((post, index) => {
           const isVideo = post.mediaType === 'VIDEO' || post.media_type === 'VIDEO';
@@ -307,21 +403,20 @@
           const videoUrl = post.mediaUrl || post.media_url;
           const postLink = post.permalink || post.perma_link;
 
-          // If it's a video, play it silently! Otherwise, show the beautiful image.
           const mediaElement = isVideo 
             ? `<video src="${videoUrl}" poster="${imgUrl}" autoplay muted loop playsinline class="ig-media"></video>`
             : `<img src="${imgUrl}" alt="Tanvi by Lakshya" class="ig-media" />`;
 
           return `
-            <a href="${postLink}" target="_blank" class="premium-ig-item reveal delay-${index % 3} in" style="opacity: 1; transform: translateY(0);">
+            <a href="${postLink}" target="_blank" class="premium-ig-item">
               <div class="ig-frame">
                 <div class="ig-media-wrap">
                   ${mediaElement}
                 </div>
                 <div class="ig-overlay">
                   <div class="ig-overlay-content">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
-                    <span>Explore Story</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+                    <span style="display:block; font-family:var(--display, 'Cinzel', serif); font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,0.4); padding-bottom:4px;">Explore Story</span>
                   </div>
                 </div>
               </div>
@@ -331,15 +426,10 @@
       })
       .catch(err => {
         console.error("Instagram Feed Error:", err);
-        feedContainer.innerHTML = `<a href="https://instagram.com/tanvibylakshya" target="_blank" style="text-align:center; grid-column: 1 / -1; color:var(--maroon); font-size: 1.2rem; font-family: var(--heading); padding: 40px; border: 1px solid var(--maroon);">Click here to view our latest collections on Instagram</a>`;
+        feedContainer.innerHTML = `<a href="https://instagram.com/tanvibylakshya" target="_blank" style="text-align:center; grid-column: 1 / -1; color:var(--maroon); font-size: 1.2rem; padding: 40px; border: 1px solid var(--maroon);">Click here to view our latest collections on Instagram</a>`;
       });
   });
-</script>
-
-<!-- The Open-Source Instafeed Engine -->
-<script src="https://cdn.jsdelivr.net/gh/stevenschobert/instafeed.js@2.0.0rc1/src/instafeed.min.js"></script>
-
-<!-- ============ FOOTER & NEWSLETTER ============ -->
+</script><!-- ============ FOOTER & NEWSLETTER ============ -->
 <footer class="luxury-footer" id="contact">
   <div class="newsletter-box reveal">
     <span class="script-accent" style="color:var(--peach-bg);">Join the Circle</span>
