@@ -402,3 +402,73 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .burger { display: flex; flex-direction: column; gap: 6px; z-index: 1000; width: 30px; }
   .burger span { height: 2px; width: 100%; background: var(--maroon); transition: all .3s; }
 }
+/* ============================================================
+   LUXURY COLLECTION DRAWER
+   ============================================================ */
+.collection-drawer {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; justify-content: flex-end;
+  visibility: hidden; opacity: 0;
+  transition: visibility 0.4s, opacity 0.4s;
+}
+.collection-drawer.active {
+  visibility: visible; opacity: 1;
+}
+
+.drawer-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(31, 11, 14, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.drawer-panel {
+  position: relative; width: 100%; max-width: 500px;
+  height: 100%; background: var(--peach-bg);
+  overflow-y: auto; padding: 60px 40px;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: -20px 0 50px rgba(0,0,0,0.2);
+}
+.collection-drawer.active .drawer-panel {
+  transform: translateX(0);
+}
+
+.drawer-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 40px; height: 40px; font-size: 1.5rem;
+  color: var(--maroon); display: flex; align-items: center;
+  justify-content: center; transition: transform 0.3s;
+}
+.drawer-close:hover { transform: rotate(90deg) scale(1.1); }
+
+.drawer-header { text-align: center; margin-bottom: 40px; }
+.drawer-header h2 {
+  font-family: var(--display); color: var(--maroon);
+  font-size: 2rem; letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* Products inside the drawer */
+.drawer-grid { display: flex; flex-direction: column; gap: 30px; }
+.d-card {
+  background: #ffffff; border: 1px solid rgba(160, 40, 60, 0.1);
+  display: flex; align-items: center; padding: 15px; gap: 20px;
+  transition: all 0.3s;
+}
+.d-card:hover { border-color: var(--maroon); box-shadow: 0 10px 20px rgba(160, 40, 60, 0.08); }
+.d-media {
+  width: 100px; height: 130px; flex-shrink: 0;
+  background: var(--peach-light); overflow: hidden;
+}
+.d-media img { width: 100%; height: 100%; object-fit: cover; }
+.d-info { flex: 1; }
+.d-info h4 { font-family: var(--heading); font-size: 1.2rem; color: var(--text-dark); margin-bottom: 5px; }
+.d-info .p-price { margin-bottom: 12px; justify-content: flex-start; }
+.d-info .p-cta { padding: 10px; font-size: 0.75rem; text-align: center; }
+
+@media (max-width: 600px) {
+  .drawer-panel { padding: 50px 20px; }
+  .d-card { flex-direction: column; text-align: center; padding: 20px; }
+  .d-media { width: 100%; height: 250px; }
+  .d-info .p-price { justify-content: center; }
+}
