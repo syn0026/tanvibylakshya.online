@@ -274,7 +274,7 @@
     </div>
   </div>
 </section>
-<!-- ============ INSTAGRAM GALLERY (100% FREE & CUSTOM) ============ -->
+<!-- ============ INSTAGRAM GALLERY (LIVE BEHOLD API) ============ -->
 <section class="section" id="instagram">
   <div class="container">
     <div class="editorial-header reveal">
@@ -283,11 +283,54 @@
       <div class="header-line"></div>
     </div>
     
-    <!-- This empty box is where our custom JavaScript will inject your photos -->
+    <!-- This empty box is where the photos will appear -->
     <div id="instafeed" class="editorial-grid"></div>
     
   </div>
 </section>
+
+<!-- INLINE SCRIPT: Bypasses browser cache to guarantee it loads -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const feedContainer = document.getElementById('instafeed');
+    if (!feedContainer) return;
+
+    // Fetching your live photos using your exact Behold ID
+    fetch('https://feeds.behold.so/SPiiC83bNipZbUjw9VKg')
+      .then(res => res.json())
+      .then(data => {
+        // Behold sometimes wraps data in a 'posts' array
+        const posts = Array.isArray(data) ? data : data.posts;
+        const recent = posts.slice(0, 4);
+
+        // Injecting the photos into your luxury CSS arches
+        feedContainer.innerHTML = recent.map((post, index) => {
+          // Grab the correct image whether it is a photo, carousel, or video reel
+          const imgUrl = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
+          const postLink = post.permalink || post.perma_link;
+
+          return `
+            <a href="${postLink}" target="_blank" class="ed-card" style="opacity: 1; transform: translateY(0);">
+              <div class="ed-frame">
+                <div class="ed-img-wrap">
+                  <img src="${imgUrl}" alt="Tanvi by Lakshya Instagram" />
+                </div>
+                <div class="ed-overlay">
+                  <span class="ed-index">0${index + 1}</span>
+                  <h3>@tanvibylakshya</h3>
+                  <span class="ed-link">View Post</span>
+                </div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      })
+      .catch(err => {
+        console.error("Instagram Feed Error:", err);
+        feedContainer.innerHTML = `<a href="https://instagram.com/tanvibylakshya" target="_blank" style="text-align:center; grid-column: 1 / -1; color:var(--maroon); font-size: 1.2rem; font-family: var(--heading); padding: 40px; border: 1px solid var(--maroon);">Click here to view our latest collections on Instagram</a>`;
+      });
+  });
+</script>
 
 <!-- The Open-Source Instafeed Engine -->
 <script src="https://cdn.jsdelivr.net/gh/stevenschobert/instafeed.js@2.0.0rc1/src/instafeed.min.js"></script>
