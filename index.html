@@ -274,180 +274,189 @@
     </div>
   </div>
 </section>
-<!-- ============ INSTAGRAM GALLERY (ULTRA-PREMIUM FINE ART GALLERY) ============ -->
-<section class="section" id="instagram" style="background: var(--peach-bg); padding: 140px 0; overflow: hidden;">
+<!-- ============ INSTAGRAM GALLERY (PREMIUM SYMMETRICAL GRID) ============ -->
+<section class="section" id="instagram" style="background: var(--peach-bg); padding: 120px 0;">
   <div class="container">
     <div class="editorial-header">
-      <span class="mal-accent">ഇൻസ്റ്റാഗ്രാം · Living Lookbook</span>
-      <h2>Lively Updates</h2>
-      <div class="header-line" style="width: 40px; height: 1px; background: #a0283c; margin: 20px auto 0;"></div>
+      <span class="mal-accent">ഇൻസ്റ്റാഗ്രാം · Follow along</span>
+      <h2>Lively Feed</h2>
+      <div class="header-line" style="width: 60px; height: 1px; background: #a0283c; margin: 20px auto 0;"></div>
     </div>
     
-    <!-- Dynamic Asymmetrical Composition Grid -->
-    <div id="instafeed" class="gallery-composition-grid"></div>
+    <!-- Premium Balanced Grid Layout Container -->
+    <div id="instafeed" class="luxury-symmetrical-grid"></div>
     
   </div>
 </section>
 
-<!-- INLINE CUSTOM GALLERY STYLING -->
+<!-- INLINE PREMIUM GRID CSS -->
 <style>
-.gallery-composition-grid {
+.luxury-symmetrical-grid {
   display: grid !important;
-  grid-template-columns: repeat(12, 1fr) !important;
-  gap: 30px !important;
-  padding: 60px 0 40px !important;
-  align-items: center !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px !important;
+  padding: 40px 0 20px !important;
   width: 100% !important;
 }
 
-.gallery-art-item {
+.luxury-grid-item {
   display: block !important;
   position: relative !important;
   text-decoration: none !important;
   width: 100% !important;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-/* --- THE ASYMMETRICAL LUXURY MATTING & GEOMETRIES --- */
-.gallery-art-item .art-frame {
+.luxury-grid-frame {
   background: #ffffff !important;
   padding: 12px !important;
   border: 1px solid rgba(160, 40, 60, 0.12) !important;
-  box-shadow: 0 15px 35px rgba(160, 40, 60, 0.04) !important;
-  transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  overflow: hidden !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(160, 40, 60, 0.03) !important;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  position: relative !important;
 }
 
-.gallery-art-item .art-media-wrap {
-  position: relative !important;
+.luxury-grid-media-wrap {
+  aspect-ratio: 1 / 1 !important; /* Perfect square grid look for a clean catalog feel */
   overflow: hidden !important;
-  width: 100% !important;
+  border-radius: 4px !important;
+  position: relative !important;
   background: #f7e6db !important;
 }
 
-/* Frame 1: The Tall Royal Arch */
-.gallery-art-item.slot-0 { grid-column: span 3 !important; transform: translateY(-30px); }
-.gallery-art-item.slot-0 .art-frame { border-radius: 200px 200px 0 0 !important; }
-.gallery-art-item.slot-0 .art-media-wrap { aspect-ratio: 3/5 !important; border-radius: 190px 190px 0 0 !important; }
-
-/* Frame 2: The Medallion Circle */
-.gallery-art-item.slot-1 { grid-column: span 3 !important; transform: translateY(40px); }
-.gallery-art-item.slot-1 .art-frame { border-radius: 50% !important; padding: 14px !important; }
-.gallery-art-item.slot-1 .art-media-wrap { aspect-ratio: 1/1 !important; border-radius: 50% !important; }
-
-/* Frame 3: The Fine-Art Leaf Arch (Asymmetrical Curve) */
-.gallery-art-item.slot-2 { grid-column: span 3 !important; transform: translateY(-50px); }
-.gallery-art-item.slot-2 .art-frame { border-radius: 220px 0 220px 0 !important; }
-.gallery-art-item.slot-2 .art-media-wrap { aspect-ratio: 3/4 !important; border-radius: 210px 0 210px 0 !important; }
-
-/* Frame 4: The Exhibition Rectangle */
-.gallery-art-item.slot-3 { grid-column: span 3 !important; transform: translateY(20px); }
-.gallery-art-item.slot-3 .art-frame { border-radius: 0 !important; padding: 18px !important; }
-.gallery-art-item.slot-3 .art-media-wrap { aspect-ratio: 4/5 !important; }
-
-/* --- CORE MEDIA & AUTOPLAY VIDEO SETTINGS --- */
-.ig-art-asset {
+.luxury-grid-asset {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
   display: block !important;
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  -webkit-filter: sepia(12%) contrast(104%) brightness(0.96) !important;
-  filter: sepia(12%) contrast(104%) brightness(0.96) !important;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  -webkit-filter: sepia(10%) contrast(102%) brightness(0.98) !important;
+  filter: sepia(10%) contrast(102%) brightness(0.98) !important;
 }
 
-/* --- MINIMALIST OVERLAY --- */
-.art-overlay {
+/* Unique Indicator Badges for Video Reels */
+.luxury-grid-badge {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  background: rgba(31, 11, 14, 0.6) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  z-index: 4 !important;
+  opacity: 0.85 !important;
+  transition: opacity 0.3s !important;
+}
+
+/* Luxury Interactive Overlay */
+.luxury-grid-overlay {
   position: absolute !important;
   inset: 0 !important;
-  background: rgba(112, 26, 40, 0.2) !important;
+  background: linear-gradient(to top, rgba(112, 26, 40, 0.85) 0%, rgba(160, 40, 60, 0.3) 100%) !important;
   opacity: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: all 0.5s ease !important;
-  z-index: 5 !important;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  z-index: 3 !important;
 }
-.art-overlay span {
+
+.luxury-grid-overlay-content {
   color: #ffffff !important;
+  text-align: center !important;
+  transform: translateY(12px) !important;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.luxury-grid-overlay-content span {
+  display: block !important;
   font-family: var(--display, 'Cinzel', serif) !important;
   font-size: 0.75rem !important;
   letter-spacing: 3px !important;
   text-transform: uppercase !important;
-  border: 1px solid #ffffff !important;
-  padding: 8px 16px !important;
-  transform: scale(0.9) !important;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+  padding-bottom: 4px !important;
 }
 
-/* --- INTERACTIVE LUXURY HOVER STATES --- */
-.gallery-art-item:hover {
-  transform: translateY(var(--hover-lift, -5px)) !important;
-  z-index: 10 !important;
-}
-.gallery-art-item.slot-0:hover { --hover-lift: -38px; }
-.gallery-art-item.slot-1:hover { --hover-lift: 32px; }
-.gallery-art-item.slot-2:hover { --hover-lift: -58px; }
-.gallery-art-item.slot-3:hover { --hover-lift: 12px; }
-
-.gallery-art-item:hover .art-frame {
+/* Hover Animations */
+.luxury-grid-item:hover .luxury-grid-frame {
+  transform: translateY(-8px) !important;
   border-color: #a0283c !important;
-  box-shadow: 0 25px 50px rgba(160, 40, 60, 0.18) !important;
+  box-shadow: 0 20px 40px rgba(160, 40, 60, 0.12) !important;
 }
-.gallery-art-item:hover .ig-art-asset {
-  transform: scale(1.06) !important;
+
+.luxury-grid-item:hover .luxury-grid-asset {
+  transform: scale(1.05) !important;
   -webkit-filter: sepia(0%) contrast(100%) brightness(1) !important;
   filter: sepia(0%) contrast(100%) brightness(1) !important;
 }
-.gallery-art-item:hover .art-overlay {
+
+.luxury-grid-item:hover .luxury-grid-overlay {
   opacity: 1 !important;
 }
-.gallery-art-item:hover .art-overlay span {
-  transform: scale(1) !important;
+
+.luxury-grid-item:hover .luxury-grid-overlay-content {
+  transform: translateY(0) !important;
 }
 
-/* Responsive Overrides: Adjust layout structure beautifully for device widths */
+.luxury-grid-item:hover .luxury-grid-badge {
+  opacity: 0 !important;
+}
+
+/* Smooth Fluid Responsiveness */
 @media (max-width: 1024px) {
-  .gallery-composition-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px 24px !important; }
-  .gallery-art-item.slot-0, .gallery-art-item.slot-1, .gallery-art-item.slot-2, .gallery-art-item.slot-3 { 
-    grid-column: span 1 !important; transform: none !important; 
-  }
-  .gallery-art-item:hover { transform: translateY(-8px) !important; }
+  .luxury-symmetrical-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
 }
 @media (max-width: 600px) {
-  .gallery-composition-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .luxury-symmetrical-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; padding: 24px 0 0 !important; }
+  .luxury-grid-frame { padding: 6px !important; }
 }
 </style>
 
-<!-- INLINE ENGINE SCRIPT: Formats assets dynamically into the luxury layout shapes -->
+<!-- INLINE ENGINE SCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const compositionContainer = document.getElementById('instafeed');
-    if (!compositionContainer) return;
+    const horizontalGrid = document.getElementById('instafeed');
+    if (!horizontalGrid) return;
 
     fetch('https://feeds.behold.so/SPiiC83bNipZbUjw9VKg')
       .then(res => res.json())
       .then(data => {
         const posts = Array.isArray(data) ? data : data.posts;
-        const lookbookItems = posts.slice(0, 4);
+        const uniformItems = posts.slice(0, 4);
 
-        compositionContainer.innerHTML = lookbookItems.map((post, index) => {
+        horizontalGrid.innerHTML = uniformItems.map((post) => {
           const isVideo = post.mediaType === 'VIDEO' || post.media_type === 'VIDEO';
           const imgUrl = post.thumbnailUrl || post.thumbnail_url || post.mediaUrl || post.media_url;
           const videoUrl = post.mediaUrl || post.media_url;
           const postLink = post.permalink || post.perma_link;
 
-          // Seamless video autoplay or image routing based on modern file checking rules
-          const mediaAsset = isVideo 
-            ? `<video src="${videoUrl}" poster="${imgUrl}" autoplay muted loop playsinline class="ig-art-asset"></video>`
-            : `<img src="${imgUrl}" alt="Tanvi Collection Reference" class="ig-art-asset" />`;
+          const mediaOutput = isVideo 
+            ? `<video src="${videoUrl}" poster="${imgUrl}" autoplay muted loop playsinline class="luxury-grid-asset"></video>`
+            : `<img src="${imgUrl}" alt="Tanvi Boutique Item" class="luxury-grid-asset" />`;
+
+          // Dynamic badge rendering for video assets vs image posts
+          const badgeOutput = isVideo 
+            ? `<div class="luxury-grid-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>`
+            : '';
 
           return `
-            <a href="${postLink}" target="_blank" class="gallery-art-item slot-${index}">
-              <div class="art-frame">
-                <div class="art-media-wrap">
-                  ${mediaAsset}
-                  <div class="art-overlay"><span>View Look</span></div>
+            <a href="${postLink}" target="_blank" class="luxury-grid-item">
+              <div class="luxury-grid-frame">
+                <div class="luxury-grid-media-wrap">
+                  ${badgeOutput}
+                  ${mediaOutput}
+                  <div class="luxury-grid-overlay">
+                    <div class="luxury-grid-overlay-content">
+                      <span>View Update</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </a>
@@ -455,8 +464,8 @@
         }).join('');
       })
       .catch(err => {
-        console.error("Lookbook Fetch Failed:", err);
-        compositionContainer.innerHTML = `<a href="https://instagram.com/tanvibylakshya" target="_blank" style="text-align:center; grid-column: 1 / -1; color:#a0283c; font-size: 1.1rem; letter-spacing:1px; font-family: var(--heading, 'Playfair Display', serif); padding: 40px; border: 1px solid rgba(160,40,60,0.2);">Explore Live Video Collections Directly on Instagram</a>`;
+        console.error("Grid Load Error:", err);
+        horizontalGrid.innerHTML = `<a href="https://instagram.com/tanvibylakshya" target="_blank" style="text-align:center; grid-column: 1 / -1; color:#a0283c; font-size: 1rem; padding: 30px; border: 1px solid rgba(160,40,60,0.15);">Follow our journey on Instagram @tanvibylakshya</a>`;
       });
   });
 </script>
