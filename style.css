@@ -56,7 +56,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .brand { display: flex; align-items: center; gap: 14px; }
 .brand img { 
-  height: 65px; /* Navbar Logo Size */
+  height: 80px; /* Navbar Logo Size */
   width: auto; 
   transition: height 0.4s var(--ease); 
 }
