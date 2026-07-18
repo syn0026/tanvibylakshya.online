@@ -351,7 +351,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nform button:hover { color: var(--white); }
 
 .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 60px; }
-.f-logo { height: 80px; filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(330deg); margin-bottom: 20px;}
+.f-logo { 
+  height: 80px; 
+  margin-bottom: 20px;
+  
+  /* 1. Forces the logo to match rgb(239, 215, 199) */
+  filter: brightness(0) saturate(100%) invert(88%) sepia(14%) saturate(848%) hue-rotate(338deg) brightness(101%) contrast(93%);
+  opacity: 0.95; 
+}
 .f-brand-word { font-family: var(--display); font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 15px; color: var(--peach-light);}
 .f-brand-word span { display: block; font-family: var(--body); font-size: 0.6rem; letter-spacing: 4px; color: var(rgba(239, 215, 199, 0.95)); margin-top: 5px; }
 .f-brand-col p { opacity: 0.7; line-height: 1.8; max-width: 300px; }
@@ -476,7 +483,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    LUXURY SEARCH OVERLAY
    ============================================================ */
 .search-overlay {
-  position: fixed; inset: 0; z-index: 10000;
+  position: fixed; inset: 0; z-index: 999999;
   background: rgba(247, 230, 219, 0.95); /* Peach bg with slight transparency */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
