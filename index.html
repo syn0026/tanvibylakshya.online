@@ -33,19 +33,21 @@
     <a href="#contact">Contact</a>
   </div>
   <div class="nav-icons">
-    <!-- <button aria-label="Search">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
-    </button>
-    <button aria-label="Account">
+     <button aria-label="Search" onclick="openSearch()">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+</button>
+    <!--<button aria-label="Account">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>
-    </button>
-    <button aria-label="Wishlist">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 20s-7-4.6-9.3-9C1 7.8 2.6 4.5 6 4c2-.3 3.8.7 6 3 2.2-2.3 4-3.3 6-3 3.4.5 5 3.8 3.3 7-2.3 4.4-9.3 9-9.3 9z"/></svg>
-    </button>
-    <button aria-label="Cart" style="position:relative;">
+    </button> -->
+    <button aria-label="Wishlist" onclick="openWishlist()">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <path d="M12 20s-7-4.6-9.3-9C1 7.8 2.6 4.5 6 4c2-.3 3.8.7 6 3 2.2-2.3 4-3.3 6-3 3.4.5 5 3.8 3.3 7-2.3 4.4-9.3 9-9.3 9z"/>
+  </svg>
+</button>
+    <!--<button aria-label="Cart" style="position:relative;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18h8.2a2 2 0 0 0 2-1.6L21.6 8H6"/><circle cx="10" cy="21" r="1.4"/><circle cx="17" cy="21" r="1.4"/></svg>
-      <span class="cart-badge">2</span>
-    </button>-->
+      <span class="cart-badge"></span>
+    </button> -->
     <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button> 
   </div> 
 </nav>
@@ -536,6 +538,33 @@
     <!-- JS will inject the specific products here -->
     <div class="drawer-grid" id="drawerGrid"></div>
   </div>
+</div>
+<!-- ============ LUXURY SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay">
+  <button class="search-close" onclick="closeSearch()" aria-label="Close Search">✕</button>
+  
+  <div class="search-container">
+    <div class="search-header">
+      <span class="script-accent">Find your perfect piece</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search for Set Mundu, Sarees, Jewellery..." onkeyup="performSearch()">
+      <div class="header-line" style="margin: 20px auto; width: 100px;"></div>
+    </div>
+    
+    <!-- Search Results will appear here instantly -->
+    <div class="drawer-grid search-results-grid" id="searchResults"></div>
+  </div>
+</div>
+<!-- ============ WISHLIST DRAWER ============ -->
+<div class="drawer-overlay" id="wishlistOverlay" onclick="closeWishlist()"></div>
+<div class="c-drawer" id="wishlistDrawer">
+  <div class="drawer-header">
+    <h2 style="font-family: var(--display, 'Cinzel', serif); color: var(--maroon); margin: 0; font-size: 1.8rem;">Your Wishlist</h2>
+    <button class="drawer-close" onclick="closeWishlist()" aria-label="Close Wishlist">✕</button>
+  </div>
+  <div class="header-line" style="margin: 15px auto 25px auto;"></div>
+  
+  <!-- Saved items will appear here -->
+  <div class="drawer-content drawer-grid" id="wishlistContent"></div>
 </div>
 </body>
 </html>

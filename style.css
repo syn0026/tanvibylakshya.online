@@ -472,3 +472,49 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .d-media { width: 100%; height: 250px; }
   .d-info .p-price { justify-content: center; }
 }
+/* ============================================================
+   LUXURY SEARCH OVERLAY
+   ============================================================ */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(247, 230, 219, 0.95); /* Peach bg with slight transparency */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex; justify-content: center; align-items: flex-start;
+  padding-top: 10vh;
+  visibility: hidden; opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.search-overlay.active {
+  visibility: visible; opacity: 1;
+}
+
+.search-close {
+  position: absolute; top: 30px; right: 40px;
+  background: none; border: none;
+  font-size: 2rem; color: var(--maroon);
+  cursor: pointer; transition: transform 0.3s;
+}
+.search-close:hover { transform: rotate(90deg) scale(1.1); }
+
+.search-container {
+  width: 100%; max-width: 800px; padding: 0 20px;
+}
+
+.search-header { text-align: center; margin-bottom: 40px; }
+
+.search-input {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 2px solid var(--maroon);
+  font-family: var(--display, 'Cinzel', serif);
+  font-size: 2rem; color: var(--maroon);
+  padding: 15px 0; text-align: center; outline: none;
+  transition: border-color 0.3s;
+}
+.search-input::placeholder { color: rgba(160, 40, 60, 0.4); }
+
+.search-results-grid {
+  max-height: 60vh; overflow-y: auto; padding-bottom: 40px;
+}
+/* We reuse the .d-card styles from the Collection Drawer for the results! */

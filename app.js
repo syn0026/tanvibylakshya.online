@@ -1,3 +1,5 @@
+// This will hold all your live Sanity products
+let allLiveProducts = [];
 // ==========================================
 // WHATSAPP DYNAMIC INQUIRY ROUTING
 // ==========================================
@@ -19,6 +21,12 @@ function inquireProduct(productName, productPrice, imageUrl) {
 // ==========================================
 // SANITY CMS INTEGRATION
 // ==========================================
+// ==========================================
+// SANITY DATABASE CONNECTION & FETCH
+// ==========================================
+
+let allLiveProducts = []; // Master list for the search engine
+
 const PROJECT_ID = 'djnynazm'; 
 const DATASET = 'production';
 
@@ -30,6 +38,29 @@ const QUERY = encodeURIComponent(`{
   
 const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
+// Fetch the data from Sanity
+fetch(URL)
+  .then(response => response.json())
+  .then(data => {
+    const newArrivals = data.result.newArrivals || [];
+    const bestSellers = data.result.bestSellers || [];
+    
+    // 1. Combine both lists for the Search Engine
+    let combinedProducts = [...newArrivals, ...bestSellers];
+    
+    // 2. Remove duplicates (in case a product is BOTH a New Arrival and Best Seller)
+    allLiveProducts = combinedProducts.filter((product, index, self) =>
+      index === self.findIndex((p) => p.title === product.title)
+    );
+
+    console.log("Search Engine is ready! Loaded products:", allLiveProducts.length);
+
+    // 3. YOUR EXISTING HOMEPAGE RENDER CODE GOES HERE
+    // (Keep whatever functions you already use to display these on the actual homepage, 
+    // like renderNewArrivals(newArrivals) or renderBestSellers(bestSellers) )
+
+  })
+  .catch(error => console.error("Error fetching data from Sanity:", error));
 // Luxury Product Card Generator
 function generateProductCard(product) {
   // We use .replace(/'/g, "\\'") to prevent product names with apostrophes from breaking the code
@@ -212,4 +243,156 @@ function closeCollection() {
   const drawer = document.getElementById('collectionDrawer');
   document.body.style.overflow = 'auto'; // Restore scrolling
   drawer.classList.remove('active');
+}
+// ==========================================
+// LUXURY SEARCH ENGINE LOGIC
+// ==========================================
+
+function openSearch() {
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchInput = document.getElementById('searchInput');
+  
+  document.body.style.overflow = 'hidden'; // Stop background scrolling
+  searchOverlay.classList.add('active');
+  
+  // Clear previous searches and focus the typing cursor
+  searchInput.value = '';
+  document.getElementById('searchResults').innerHTML = '';
+  setTimeout(() => searchInput.focus(), 100); 
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('active');
+  document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+function performSearch() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const resultsContainer = document.getElementById('searchResults');
+  
+  if (query === '') {
+    resultsContainer.innerHTML = '';
+    return;
+  }
+
+  // Filter the live products fetched from Sanity
+  const matchedProducts = allLiveProducts.filter(product => {
+    const titleMatch = product.title && product.title.toLowerCase().includes(query);
+    const categoryMatch = product.category && product.category.toLowerCase().includes(query);
+    
+    // If the user types "new arrival", show everything flagged as isNew
+    const newArrivalMatch = (query.includes("new") || query.includes("arrival")) && product.isNew;
+    
+    return titleMatch || categoryMatch || newArrivalMatch;
+  });
+
+  // Display the results
+  if (matchedProducts.length > 0) {
+    resultsContainer.innerHTML = matchedProducts.map(product => {
+      const safeTitle = product.title.replace(/'/g, "\\'");
+      const priceHTML = product.originalPrice 
+        ? `<span class="now">₹${product.price}</span><span class="was">₹${product.originalPrice}</span>` 
+        : `<span class="now">₹${product.price}</span>`;
+
+      return `
+        <article class="d-card" style="margin-bottom: 15px;">
+          <div class="d-media">
+            <!-- Updated to use product.imageUrl from your Sanity query -->
+            <img src="${product.imageUrl}" alt="${product.title}">
+          </div>
+          <div class="d-info" style="text-align: left;">
+            <h4>${product.title}</h4>
+            <div class="p-price" style="justify-content: flex-start;">${priceHTML}</div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+              <a href="javascript:void(0)" onclick="inquireProduct('${safeTitle}', '${product.price}', '${product.imageUrl}')" class="p-cta" style="flex: 1; padding: 8px; font-size: 0.9rem;">Enquire</a>
+              <button onclick="toggleWishlist('${safeTitle}', '${product.price}', '${product.imageUrl}')" style="background: transparent; border: 1px solid var(--maroon); color: var(--maroon); cursor: pointer; padding: 0 10px;" title="Save to Wishlist">♡</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  } else {
+    resultsContainer.innerHTML = `<p style="text-align:center; font-family: var(--display); color: var(--maroon); font-size: 1.2rem; margin-top: 40px;">No exquisite pieces found for "${query}".</p>`;
+  }
+}
+// ==========================================
+// WISHLIST LOGIC (Saves to Browser Storage)
+// ==========================================
+
+// Load saved wishlist from browser memory, or start with an empty array
+let userWishlist = JSON.parse(localStorage.getItem('tanviWishlist')) || [];
+
+function openWishlist() {
+  document.getElementById('wishlistOverlay').classList.add('active');
+  document.getElementById('wishlistDrawer').classList.add('active');
+  document.body.style.overflow = 'hidden'; // Stop background scroll
+  renderWishlist(); // Update the visual list
+}
+
+function closeWishlist() {
+  document.getElementById('wishlistOverlay').classList.remove('active');
+  document.getElementById('wishlistDrawer').classList.remove('active');
+  document.body.style.overflow = 'auto'; // Restore scroll
+}
+
+// Function to Add or Remove items
+function toggleWishlist(title, price, img) {
+  // Check if the product is already in the wishlist
+  const index = userWishlist.findIndex(item => item.title === title);
+  
+  if (index > -1) {
+    // If it exists, remove it
+    userWishlist.splice(index, 1);
+    alert("Removed from Wishlist");
+  } else {
+    // If it doesn't exist, add it
+    userWishlist.push({ title, price, img });
+    alert("Added to Wishlist!");
+  }
+  
+  // Save the updated list back to the browser
+  localStorage.setItem('tanviWishlist', JSON.stringify(userWishlist));
+  
+  // If the drawer is open, refresh what it shows
+  renderWishlist();
+}
+
+// Function to draw the items on the screen
+function renderWishlist() {
+  const container = document.getElementById('wishlistContent');
+  
+  if (userWishlist.length === 0) {
+    container.innerHTML = `<p style="text-align:center; font-family: var(--display); color: var(--maroon); font-size: 1.2rem; margin-top: 40px; width: 100%;">Your wishlist is empty.</p>`;
+    return;
+  }
+
+  // Generate the HTML for each saved product
+  container.innerHTML = userWishlist.map(product => {
+    const safeTitle = product.title.replace(/'/g, "\\'");
+    
+    return `
+      <article class="d-card" style="margin-bottom: 15px;">
+        <div class="d-media">
+          <img src="${product.img}" alt="${product.title}">
+        </div>
+        <div class="d-info" style="text-align: left;">
+          <h4>${product.title}</h4>
+          <div class="p-price" style="justify-content: flex-start;">
+            <span class="now">₹${product.price}</span>
+          </div>
+          
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <!-- WhatsApp Enquire Button -->
+            <a href="javascript:void(0)" onclick="inquireProduct('${safeTitle}', '${product.price}', '${product.img}')" class="p-cta" style="flex: 1; padding: 8px; font-size: 0.9rem;">Enquire</a>
+            
+            <!-- Remove from Wishlist Button -->
+            <button onclick="toggleWishlist('${safeTitle}', '${product.price}', '${product.img}')" style="background: transparent; border: 1px solid var(--maroon); color: var(--maroon); cursor: pointer; padding: 0 10px; display: flex; align-items: center; justify-content: center;" title="Remove">
+              ✕
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
