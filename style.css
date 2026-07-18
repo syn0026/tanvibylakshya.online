@@ -38,29 +38,49 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 ::selection { background: var(--maroon); color: var(--peach-bg); }
 
 /* ============================================================
-   NAVBAR
+   PREMIUM GLASS NAVBAR (BASE & SCROLLED STATE)
    ============================================================ */
+
 .navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  z-index: 9999; 
   padding: 20px 5vw;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: all 0.5s var(--ease);
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Cinematic ease */
   background: transparent;
+  box-sizing: border-box; /* Prevents padding from breaking the width animation */
 }
+
+/* The Floating Glass Effect */
 .navbar.scrolled {
-  background: rgba(239, 215, 199, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 12px 5vw;
-  box-shadow: 0 4px 30px rgba(160, 40, 60, 0.05);
-  border-bottom: 1px solid rgba(160, 40, 60, 0.1);
+  top: 15px;               
+  width: 92%;              
+  left: 4%;                
+  border-radius: 40px;     
+  padding: 10px 40px;      /* Adjusted side padding to fit the rounded edges */
+  
+  background: rgba(247, 230, 219, 0.7); 
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  box-shadow: 0 15px 35px rgba(160, 40, 60, 0.15); 
 }
+
+/* --- BRANDING & LOGO --- */
 .brand { display: flex; align-items: center; gap: 14px; }
 .brand img { 
-  height: 80px; /* Navbar Logo Size */
+  height: 80px; 
   width: auto; 
-  transition: height 0.4s var(--ease); 
+  transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
 }
-.navbar.scrolled .brand img { height: 50px; }
+.navbar.scrolled .brand img { height: 50px; } /* Shrinks logo smoothly */
+
 .brand-word {
   font-family: var(--display); font-size: 1.3rem; letter-spacing: 2px;
   color: var(--maroon); line-height: 1.1; font-weight: 600;
@@ -70,6 +90,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 4px; color: var(--text-dark); font-weight: 600; margin-top: 4px;
 }
 
+/* --- NAV LINKS --- */
 .nav-links { display: flex; align-items: center; gap: 40px; }
 .nav-links a {
   font-size: 0.85rem; letter-spacing: 1px; font-weight: 600; text-transform: uppercase;
@@ -82,14 +103,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .nav-links a:hover::after { width: 100%; }
 
+/* --- ICONS --- */
 .nav-icons { display: flex; align-items: center; gap: 20px; color: var(--maroon); }
-.nav-icons button { color: inherit; transition: transform 0.3s; }
+.nav-icons button { 
+  color: inherit; 
+  background: transparent; 
+  border: none; 
+  cursor: pointer;
+  transition: transform 0.3s; 
+}
 .nav-icons button:hover { transform: translateY(-2px); }
+
 .cart-badge {
   position: absolute; top: -6px; right: -8px; background: var(--maroon-deep); color: var(--white);
   font-size: 0.6rem; font-weight: 700; border-radius: 50%; width: 16px; height: 16px;
   display: flex; align-items: center; justify-content: center;
 }
+
 .burger { display: none; }
 
 /* ============================================================
@@ -388,12 +418,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .f-grid { grid-template-columns: 1fr 1fr; }
   .ed-card:nth-child(even) { margin-top: 0; }
 }
+
 @media (max-width:768px){
+  /* --- Existing Typography & Footer Resets --- */
   .hero-title { font-size: 2.8rem; }
   .script-accent { font-size: 2.5rem; }
   .editorial-header h2 { font-size: 2rem; }
   .newsletter-box { 
-    margin: 0 auto 40px auto; /* Resets the negative margin on mobile */
+    margin: 0 auto 40px auto; 
     width: 100%; 
     border: none; 
     box-shadow: none; 
@@ -403,9 +435,33 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .luxury-footer::before { display: none; }
   .f-grid { grid-template-columns: 1fr; gap: 40px; }
   
-  .nav-links { position: fixed; top: 0; right: 0; height: 100svh; width: 85vw; background: var(--peach-light); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 120px 40px; gap: 30px; transform: translateX(100%); transition: transform .6s var(--ease); box-shadow: -10px 0 50px rgba(160,40,60,.1); }
+  /* --- UPGRADED MOBILE NAVBAR (Premium Glass Sizing) --- */
+  .navbar { 
+    padding: 15px 5vw; 
+  }
+  .navbar.scrolled {
+    top: 10px;
+    width: 94%;           
+    left: 3%;
+    padding: 10px 20px;   /* Keeps icons from hitting the edges */
+    border-radius: 30px;  /* Tighter, elegant curves for mobile */
+  }
+  
+  /* Smooth logo scaling for mobile */
+  .brand img { height: 55px; }
+  .navbar.scrolled .brand img { height: 40px; }
+
+  /* --- Existing Mobile Nav Drawer & Burger Menu --- */
+  .nav-links { 
+    position: fixed; top: 0; right: 0; height: 100svh; width: 85vw; 
+    background: var(--peach-light); flex-direction: column; align-items: flex-start; 
+    justify-content: flex-start; padding: 120px 40px; gap: 30px; 
+    transform: translateX(100%); transition: transform .6s var(--ease); 
+    box-shadow: -10px 0 50px rgba(160,40,60,.1); 
+  }
   .nav-links.open { transform: translateX(0); }
   .nav-links a { font-size: 1.5rem; font-family: var(--display); letter-spacing: 2px;}
+  
   .burger { display: flex; flex-direction: column; gap: 6px; z-index: 1000; width: 30px; }
   .burger span { height: 2px; width: 100%; background: var(--maroon); transition: all .3s; }
 }

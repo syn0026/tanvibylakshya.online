@@ -376,3 +376,18 @@ function renderWishlist() {
     `;
   }).join('');
 }
+// ==========================================
+// PREMIUM NAVBAR SCROLL EFFECT
+// ==========================================
+window.addEventListener('scroll', () => {
+  // Change 'header' to '.navbar' if you use a div class instead of a header tag
+  const nav = document.querySelector('header'); 
+  
+  // If the user scrolls down more than 50 pixels, apply the glass effect
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    // If they go back to the top, snap it back to normal
+    nav.classList.remove('scrolled');
+  }
+});
