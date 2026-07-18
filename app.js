@@ -1,5 +1,4 @@
-// This will hold all your live Sanity products
-let allLiveProducts = [];
+
 // ==========================================
 // WHATSAPP DYNAMIC INQUIRY ROUTING
 // ==========================================
@@ -21,12 +20,6 @@ function inquireProduct(productName, productPrice, imageUrl) {
 // ==========================================
 // SANITY CMS INTEGRATION
 // ==========================================
-// ==========================================
-// SANITY DATABASE CONNECTION & FETCH
-// ==========================================
-
-let allLiveProducts = []; // Master list for the search engine
-
 const PROJECT_ID = 'djnynazm'; 
 const DATASET = 'production';
 
@@ -38,29 +31,6 @@ const QUERY = encodeURIComponent(`{
   
 const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
-// Fetch the data from Sanity
-fetch(URL)
-  .then(response => response.json())
-  .then(data => {
-    const newArrivals = data.result.newArrivals || [];
-    const bestSellers = data.result.bestSellers || [];
-    
-    // 1. Combine both lists for the Search Engine
-    let combinedProducts = [...newArrivals, ...bestSellers];
-    
-    // 2. Remove duplicates (in case a product is BOTH a New Arrival and Best Seller)
-    allLiveProducts = combinedProducts.filter((product, index, self) =>
-      index === self.findIndex((p) => p.title === product.title)
-    );
-
-    console.log("Search Engine is ready! Loaded products:", allLiveProducts.length);
-
-    // 3. YOUR EXISTING HOMEPAGE RENDER CODE GOES HERE
-    // (Keep whatever functions you already use to display these on the actual homepage, 
-    // like renderNewArrivals(newArrivals) or renderBestSellers(bestSellers) )
-
-  })
-  .catch(error => console.error("Error fetching data from Sanity:", error));
 // Luxury Product Card Generator
 function generateProductCard(product) {
   // We use .replace(/'/g, "\\'") to prevent product names with apostrophes from breaking the code
@@ -270,21 +240,32 @@ function performSearch() {
   const query = document.getElementById('searchInput').value.toLowerCase().trim();
   const resultsContainer = document.getElementById('searchResults');
   
+  // If the search box is empty, clear the results
   if (query === '') {
     resultsContainer.innerHTML = '';
     return;
   }
 
-  // Filter the live products fetched from Sanity
-  const matchedProducts = allLiveProducts.filter(product => {
-    const titleMatch = product.title && product.title.toLowerCase().includes(query);
-    const categoryMatch = product.category && product.category.toLowerCase().includes(query);
+  let matchedProducts = [];
+
+  // Loop through all categories in your collectionsDB
+  for (const category in collectionsDB) {
+    const products = collectionsDB[category];
     
-    // If the user types "new arrival", show everything flagged as isNew
-    const newArrivalMatch = (query.includes("new") || query.includes("arrival")) && product.isNew;
+    // Clean up the category name (changes "new-arrivals" to "new arrivals")
+    const cleanCategory = category.replace(/[-_]/g, ' ').toLowerCase();
     
-    return titleMatch || categoryMatch || newArrivalMatch;
-  });
+    products.forEach(product => {
+      // UPGRADE: Check if the product title matches OR if the category matches
+      if (product.title.toLowerCase().includes(query) || cleanCategory.includes(query)) {
+        
+        // Prevent adding the exact same product twice
+        if (!matchedProducts.some(p => p.title === product.title)) {
+          matchedProducts.push(product);
+        }
+      }
+    });
+  }
 
   // Display the results
   if (matchedProducts.length > 0) {
@@ -297,16 +278,15 @@ function performSearch() {
       return `
         <article class="d-card" style="margin-bottom: 15px;">
           <div class="d-media">
-            <!-- Updated to use product.imageUrl from your Sanity query -->
-            <img src="${product.imageUrl}" alt="${product.title}">
+            <img src="${product.img}" alt="${product.title}">
           </div>
           <div class="d-info" style="text-align: left;">
             <h4>${product.title}</h4>
             <div class="p-price" style="justify-content: flex-start;">${priceHTML}</div>
             
             <div style="display: flex; gap: 10px; margin-top: 15px;">
-              <a href="javascript:void(0)" onclick="inquireProduct('${safeTitle}', '${product.price}', '${product.imageUrl}')" class="p-cta" style="flex: 1; padding: 8px; font-size: 0.9rem;">Enquire</a>
-              <button onclick="toggleWishlist('${safeTitle}', '${product.price}', '${product.imageUrl}')" style="background: transparent; border: 1px solid var(--maroon); color: var(--maroon); cursor: pointer; padding: 0 10px;" title="Save to Wishlist">♡</button>
+              <a href="javascript:void(0)" onclick="inquireProduct('${safeTitle}', '${product.price}', '${product.img}')" class="p-cta" style="flex: 1; padding: 8px; font-size: 0.9rem;">Enquire</a>
+              <button onclick="toggleWishlist('${safeTitle}', '${product.price}', '${product.img}')" style="background: transparent; border: 1px solid var(--maroon); color: var(--maroon); cursor: pointer; padding: 0 10px;" title="Save to Wishlist">♡</button>
             </div>
           </div>
         </article>
