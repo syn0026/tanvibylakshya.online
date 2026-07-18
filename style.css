@@ -353,10 +353,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .f-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; padding-bottom: 60px; }
 .f-logo { height: 80px; filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(330deg); margin-bottom: 20px;}
 .f-brand-word { font-family: var(--display); font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 15px; color: var(--peach-light);}
-.f-brand-word span { display: block; font-family: var(--body); font-size: 0.6rem; letter-spacing: 4px; color: var(--gold); margin-top: 5px; }
+.f-brand-word span { display: block; font-family: var(--body); font-size: 0.6rem; letter-spacing: 4px; color: var(rgba(239, 215, 199, 0.95)); margin-top: 5px; }
 .f-brand-col p { opacity: 0.7; line-height: 1.8; max-width: 300px; }
 
-.f-links h5, .f-contact h5 { font-family: var(--display); font-size: 1.2rem; letter-spacing: 2px; color: var(--gold); margin-bottom: 25px; text-transform: uppercase; }
+.f-links h5, .f-contact h5 { font-family: var(--display); font-size: 1.2rem; letter-spacing: 2px; color: var(rgba(239, 215, 199, 0.95)); margin-bottom: 25px; text-transform: uppercase; }
 .f-links a { display: block; margin-bottom: 15px; opacity: 0.7; transition: opacity 0.3s, color 0.3s; }
 .f-links a:hover { opacity: 1; color: var(--white); }
 .f-contact p { margin-bottom: 15px; opacity: 0.7; }
